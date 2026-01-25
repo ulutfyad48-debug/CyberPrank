@@ -1,0 +1,25 @@
+{
+  "name": "cyberprank-pwa",
+  "version": "3.0.0",
+  "description": "Advanced Cybersecurity Simulation PWA",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -p 8080",
+    "build": "echo 'No build required'",
+    "test": "echo 'No tests specified'",
+    "deploy": "gh-pages -d ."
+  },
+  "keywords": [
+    "cybersecurity",
+    "pwa",
+    "simulation",
+    "education",
+    "hacking"
+  ],
+  "author": "CyberPrank Team",
+  "license": "Educational",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "gh-pages": "^5.0.0"
+  }
+}
