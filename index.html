@@ -7,11 +7,11 @@
     
     <!-- ===== PWA META TAGS ===== -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="CyberPrank">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json" id="app-manifest">
     <meta name="theme-color" content="#000000">
     <meta name="msapplication-TileColor" content="#00ff00">
     <meta name="msapplication-TileImage" content="icons/icon-144.png">
@@ -20,113 +20,63 @@
     <link rel="apple-touch-icon" href="icons/icon-152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
     <link rel="apple-touch-icon" sizes="167x167" href="icons/icon-167.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
     <link rel="apple-touch-icon" sizes="120x120" href="icons/icon-120.png">
     
     <!-- ===== SEO META TAGS ===== -->
-    <meta name="title" content="CyberPrank - Cyber Security Awareness Simulation">
-    <meta name="description" content="Advanced hacking simulation for cyber security awareness. Educational demo showing how real cyber attacks appear. No real hacking occurs - for learning purposes only.">
-    <meta name="keywords" content="cyber security, hacking simulation, security awareness, phishing demo, educational tool, fake hack, cyber prank, security training, cybersecurity education, ethical hacking demo">
-    <meta name="author" content="CyberPrank Security Team">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="googlebot" content="index, follow">
+    <meta name="title" content="CyberPrank - Advanced Security Simulation">
+    <meta name="description" content="Realistic hacking simulation for cybersecurity education. Experience advanced penetration testing simulation with PWA support.">
+    <meta name="keywords" content="cyber security, hacking simulation, PWA, web app, security training, ethical hacking, penetration testing, cybersecurity demo">
+    <meta name="author" content="CyberPrank Security">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://ulutfyad48-debug.github.io/CyberPrank/">
     
-    <!-- ===== OPEN GRAPH / FACEBOOK ===== -->
+    <!-- ===== OPEN GRAPH ===== -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ulutfyad48-debug.github.io/CyberPrank/">
-    <meta property="og:title" content="CyberPrank - Security Awareness Simulation">
-    <meta property="og:description" content="Experience a realistic hacking simulation for cyber security education. Learn how to identify real threats.">
+    <meta property="og:title" content="CyberPrank - Advanced Security Simulation">
+    <meta property="og:description" content="Realistic hacking simulation PWA for cybersecurity education">
     <meta property="og:image" content="https://ulutfyad48-debug.github.io/CyberPrank/icons/icon-512.png">
-    <meta property="og:image:width" content="512">
-    <meta property="og:image:height" content="512">
-    <meta property="og:site_name" content="CyberPrank">
     
-    <!-- ===== TWITTER CARDS ===== -->
+    <!-- ===== TWITTER ===== -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ulutfyad48-debug.github.io/CyberPrank/">
-    <meta property="twitter:title" content="CyberPrank - Security Awareness Demo">
-    <meta property="twitter:description" content="Educational hacking simulation for cyber security training">
-    <meta property="twitter:image" content="https://ulutfyad48-debug.github.io/CyberPrank/icons/icon-512.png">
+    <meta property="twitter:title" content="CyberPrank - Security Demo">
+    <meta property="twitter:description" content="Advanced hacking simulation PWA">
     
     <!-- ===== FAVICON ===== -->
     <link rel="icon" type="image/x-icon" href="icons/icon-192.png">
     <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
     
-    <!-- ===== TITLE ===== -->
-    <title>🚨 SYSTEM INTEGRITY ALERT | CyberPrank</title>
+    <title>🚨 CYBER ATTACK SIMULATION | CyberPrank PWA</title>
     
     <!-- ===== MAIN STYLES ===== -->
     <style>
-        /* ===== RESET & BASE STYLES ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* ===== RESET ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         :root {
             --hacker-green: #00ff00;
             --hacker-red: #ff0000;
-            --hacker-yellow: #ffff00;
+            --hacker-blue: #0088ff;
+            --hacker-purple: #aa00ff;
             --hacker-cyan: #00ffff;
-            --hacker-magenta: #ff00ff;
             --terminal-bg: #000000;
-            --terminal-glow: rgba(0, 255, 0, 0.1);
         }
-
-        html, body {
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            left: 0;
-        }
-
+        
         body {
-            background: var(--terminal-bg);
+            background: #000;
             color: var(--hacker-green);
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            cursor: none;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            text-rendering: optimizeSpeed;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* ===== CUSTOM CURSOR ===== */
-        .cursor {
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
             position: fixed;
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--hacker-red);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            mix-blend-mode: difference;
-            animation: pulseCursor 1s infinite;
-            transition: transform 0.1s;
+            cursor: none;
         }
-
-        @keyframes pulseCursor {
-            0%, 100% { 
-                transform: scale(1); 
-                opacity: 1; 
-                box-shadow: 0 0 10px var(--hacker-red);
-            }
-            50% { 
-                transform: scale(1.2); 
-                opacity: 0.7; 
-                box-shadow: 0 0 20px var(--hacker-red);
-            }
-        }
-
+        
         /* ===== MATRIX BACKGROUND ===== */
-        #matrixCanvas {
+        #matrix {
             position: fixed;
             top: 0;
             left: 0;
@@ -135,8 +85,8 @@
             z-index: 1;
             opacity: 0.3;
         }
-
-        /* ===== SCAN LINES ===== */
+        
+        /* ===== SCANLINES ===== */
         .scanlines {
             position: fixed;
             top: 0;
@@ -151,946 +101,317 @@
             background-size: 100% 4px;
             z-index: 2;
             pointer-events: none;
-            animation: scanlineMove 20s linear infinite;
+            animation: scan 10s linear infinite;
         }
-
-        @keyframes scanlineMove {
+        
+        @keyframes scan {
             0% { background-position: 0 0; }
-            100% { background-position: 0 100%; }
+            100% { background-position: 0 100vh; }
         }
-
-        /* ===== GLITCH EFFECT ===== */
-        .glitch-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 3;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .glitch {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(0deg, transparent 50%, rgba(0, 255, 0, 0.1) 50%),
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
-            background-size: 100% 2px, auto;
-            animation: glitchAnim 0.1s infinite, glitchShift 5s infinite;
-            opacity: 0.7;
-        }
-
-        @keyframes glitchAnim {
-            0% { transform: translate(0); filter: hue-rotate(0deg); }
-            20% { transform: translate(-2px, 2px) skew(1deg); }
-            40% { transform: translate(-2px, -2px) skew(-1deg); }
-            60% { transform: translate(2px, 2px) skew(0.5deg); }
-            80% { transform: translate(2px, -2px) skew(-0.5deg); }
-            100% { transform: translate(0); filter: hue-rotate(360deg); }
-        }
-
-        @keyframes glitchShift {
-            0%, 100% { background-position: 0 0, 0 0; }
-            50% { background-position: 10px 0, 0 0; }
-        }
-
+        
         /* ===== MAIN CONTAINER ===== */
         .container {
             position: relative;
-            z-index: 4;
-            padding: 30px;
+            z-index: 10;
+            padding: 20px;
             height: 100vh;
             display: flex;
             flex-direction: column;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(2px);
+            background: rgba(0, 0, 0, 0.8);
         }
-
+        
         /* ===== HEADER ===== */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 20px;
+            padding: 15px 0;
             border-bottom: 2px solid var(--hacker-green);
             margin-bottom: 20px;
-            border-image: linear-gradient(90deg, transparent, var(--hacker-green), transparent) 1;
         }
-
+        
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
             color: var(--hacker-red);
-            text-shadow: 
-                0 0 10px var(--hacker-red),
-                0 0 20px rgba(255, 0, 0, 0.5);
-            letter-spacing: 1px;
-            animation: logoGlitch 3s infinite;
+            text-shadow: 0 0 10px var(--hacker-red);
         }
-
-        @keyframes logoGlitch {
-            0%, 100% { 
-                text-shadow: 
-                    0 0 10px var(--hacker-red),
-                    0 0 20px rgba(255, 0, 0, 0.5);
-                transform: translateX(0);
-            }
-            95% { 
-                text-shadow: 
-                    0 0 10px var(--hacker-red),
-                    0 0 20px rgba(255, 0, 0, 0.5),
-                    2px 0 0 var(--hacker-cyan),
-                    -2px 0 0 var(--hacker-magenta);
-                transform: translateX(1px);
-            }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-
-        .timestamp {
-            color: var(--hacker-cyan);
-            font-size: 14px;
-            text-shadow: 0 0 5px var(--hacker-cyan);
-            font-variant-numeric: tabular-nums;
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--hacker-red);
+            animation: pulse 1s infinite;
         }
-
-        /* ===== TERMINAL AREA ===== */
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        /* ===== TERMINAL ===== */
         .terminal {
             flex: 1;
             overflow-y: auto;
-            background: rgba(0, 20, 0, 0.25);
+            background: rgba(0, 20, 0, 0.3);
             border: 1px solid var(--hacker-green);
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 
-                0 0 30px var(--terminal-glow),
-                inset 0 0 20px rgba(0, 255, 0, 0.1);
-            position: relative;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
         }
-
-        .terminal::-webkit-scrollbar {
-            display: none;
-        }
-
-        .terminal::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--hacker-green), 
-                transparent);
-            animation: scanTerminal 2s linear infinite;
-        }
-
-        @keyframes scanTerminal {
-            0% { top: 0; }
-            100% { top: 100%; }
-        }
-
-        .line {
+        
+        .terminal-line {
             margin-bottom: 8px;
-            font-size: 15px;
-            line-height: 1.4;
-            text-shadow: 0 0 3px currentColor;
             opacity: 0;
             animation: fadeIn 0.3s forwards;
         }
-
+        
         @keyframes fadeIn {
             to { opacity: 1; }
         }
-
+        
         .prompt { color: var(--hacker-green); }
-        .cmd { color: #ffffff; }
-        .success { 
-            color: var(--hacker-green); 
-            text-shadow: 0 0 5px var(--hacker-green);
-        }
-        .error { 
-            color: var(--hacker-red); 
-            text-shadow: 0 0 5px var(--hacker-red);
-            animation: blinkError 0.5s infinite;
-        }
-        .warning { 
-            color: var(--hacker-yellow); 
-            text-shadow: 0 0 5px var(--hacker-yellow);
-        }
-        .critical { 
-            color: var(--hacker-magenta); 
-            font-weight: bold;
-            text-shadow: 
-                0 0 10px var(--hacker-magenta),
-                0 0 20px rgba(255, 0, 255, 0.5);
-            animation: pulseCritical 1s infinite;
-        }
-        .system { color: var(--hacker-cyan); }
-
-        @keyframes blinkError {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        @keyframes pulseCritical {
-            0%, 100% { 
-                text-shadow: 
-                    0 0 10px var(--hacker-magenta),
-                    0 0 20px rgba(255, 0, 255, 0.5);
-            }
-            50% { 
-                text-shadow: 
-                    0 0 15px var(--hacker-magenta),
-                    0 0 30px rgba(255, 0, 255, 0.7);
-            }
-        }
-
-        /* ===== PROGRESS SECTION ===== */
-        .progress-section {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+        .success { color: #00ff00; }
+        .error { color: #ff0000; }
+        .warning { color: #ffff00; }
+        .info { color: #0088ff; }
+        .highlight { color: #ff00ff; }
+        
+        /* ===== PROGRESS ===== */
+        .progress-container {
+            background: rgba(0, 30, 0, 0.5);
             padding: 15px;
-            background: rgba(0, 20, 0, 0.4);
             border: 1px solid var(--hacker-green);
-            border-image: linear-gradient(90deg, 
-                var(--hacker-green), 
-                var(--hacker-cyan), 
-                var(--hacker-green)) 1;
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 20px;
         }
-
-        .progress-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(0, 255, 0, 0.2), 
-                transparent);
-            animation: progressShine 3s infinite;
-        }
-
-        @keyframes progressShine {
-            to { left: 100%; }
-        }
-
-        .progress-label {
-            min-width: 200px;
-            color: var(--hacker-cyan);
-            text-shadow: 0 0 5px var(--hacker-cyan);
-            font-weight: bold;
-        }
-
-        .progress-bar-container {
-            flex: 1;
-            height: 20px;
-            background: rgba(0, 34, 0, 0.5);
-            border: 1px solid var(--hacker-green);
-            overflow: hidden;
-            position: relative;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
+        
         .progress-bar {
+            height: 20px;
+            background: rgba(0, 50, 0, 0.5);
+            border: 1px solid var(--hacker-green);
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, 
-                #002200, 
-                var(--hacker-green),
-                #00cc00);
-            transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
+            background: linear-gradient(90deg, #002200, #00ff00);
+            transition: width 0.5s;
         }
-
-        .progress-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.4), 
-                transparent);
-            animation: shine 2s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .progress-text {
-            min-width: 100px;
-            text-align: right;
-            color: var(--hacker-yellow);
-            text-shadow: 0 0 5px var(--hacker-yellow);
-            font-weight: bold;
-            font-variant-numeric: tabular-nums;
-        }
-
-        /* ===== SYSTEM STATUS GRID ===== */
-        .status-grid {
+        
+        /* ===== STATS GRID ===== */
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
-
-        .status-item {
+        
+        .stat-box {
             padding: 15px;
-            background: rgba(0, 20, 0, 0.3);
+            background: rgba(0, 20, 0, 0.4);
             border: 1px solid var(--hacker-green);
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
         }
-
-        .status-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
-            border-color: var(--hacker-cyan);
-        }
-
-        .status-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--hacker-green), 
-                transparent);
-        }
-
-        .status-label {
-            color: var(--hacker-cyan);
+        
+        .stat-label {
             font-size: 12px;
+            color: var(--hacker-cyan);
             margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
-
-        .status-value {
+        
+        .stat-value {
             font-size: 18px;
             font-weight: bold;
-            text-shadow: 0 0 5px currentColor;
         }
-
-        .status-good { color: var(--hacker-green); }
-        .status-warning { 
-            color: var(--hacker-yellow); 
-            animation: statusPulse 2s infinite;
+        
+        /* ===== PWA INSTALL BUTTON ===== */
+        #installBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #00ff00, #008800);
+            color: black;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 0 15px #00ff00;
+            animation: installPulse 2s infinite;
         }
-        .status-critical { 
-            color: var(--hacker-red); 
-            animation: statusCritical 1s infinite;
+        
+        @keyframes installPulse {
+            0%, 100% { box-shadow: 0 0 15px #00ff00; }
+            50% { box-shadow: 0 0 25px #00ff00; }
         }
-
-        @keyframes statusPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        @keyframes statusCritical {
-            0%, 100% { 
-                text-shadow: 0 0 5px var(--hacker-red);
-            }
-            50% { 
-                text-shadow: 
-                    0 0 10px var(--hacker-red),
-                    0 0 20px rgba(255, 0, 0, 0.5);
-            }
-        }
-
+        
         /* ===== ALERT MODAL ===== */
         .alert-modal {
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            background: rgba(0, 0, 0, 0.97);
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
             border: 3px solid var(--hacker-red);
-            padding: 40px;
-            width: 80%;
+            padding: 30px;
+            width: 90%;
             max-width: 600px;
             z-index: 10000;
             display: none;
-            box-shadow: 
-                0 0 100px rgba(255, 0, 0, 0.7),
-                inset 0 0 50px rgba(255, 0, 0, 0.1);
-            animation: alertPulse 2s infinite, modalAppear 0.5s forwards;
-            text-align: center;
-        }
-
-        @keyframes alertPulse {
-            0%, 100% { 
-                box-shadow: 
-                    0 0 100px rgba(255, 0, 0, 0.7),
-                    inset 0 0 50px rgba(255, 0, 0, 0.1);
-                border-color: var(--hacker-red);
-            }
-            50% { 
-                box-shadow: 
-                    0 0 150px rgba(255, 0, 0, 0.9),
-                    inset 0 0 80px rgba(255, 0, 0, 0.2);
-                border-color: #ff3333;
-            }
-        }
-
-        @keyframes modalAppear {
-            to { transform: translate(-50%, -50%) scale(1); }
-        }
-
-        .alert-title {
-            color: var(--hacker-red);
-            font-size: 32px;
-            margin-bottom: 20px;
-            text-shadow: 
-                0 0 20px var(--hacker-red),
-                0 0 40px rgba(255, 0, 0, 0.5);
-            animation: titleGlitch 3s infinite;
-        }
-
-        @keyframes titleGlitch {
-            0%, 100% { 
-                transform: translateX(0);
-                text-shadow: 
-                    0 0 20px var(--hacker-red),
-                    0 0 40px rgba(255, 0, 0, 0.5);
-            }
-            95% { 
-                transform: translateX(2px);
-                text-shadow: 
-                    0 0 20px var(--hacker-red),
-                    0 0 40px rgba(255, 0, 0, 0.5),
-                    2px 0 0 var(--hacker-cyan),
-                    -2px 0 0 var(--hacker-magenta);
-            }
-        }
-
-        .alert-content {
-            color: #ffffff;
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            text-shadow: 0 0 5px #fff;
-        }
-
-        .alert-content p {
-            margin-bottom: 15px;
-        }
-
-        /* ===== EXIT PREVENTION OVERLAY ===== */
-        #exitOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            display: none;
-        }
-
-        .exit-message {
-            color: var(--hacker-red);
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 30px;
-            text-shadow: 
-                0 0 20px var(--hacker-red),
-                0 0 40px rgba(255, 0, 0, 0.5);
-            animation: shake 0.5s infinite, exitPulse 2s infinite;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0) rotate(0deg); }
-            25% { transform: translateX(-10px) rotate(-1deg); }
-            75% { transform: translateX(10px) rotate(1deg); }
-        }
-
-        @keyframes exitPulse {
-            0%, 100% { 
-                text-shadow: 
-                    0 0 20px var(--hacker-red),
-                    0 0 40px rgba(255, 0, 0, 0.5);
-            }
-            50% { 
-                text-shadow: 
-                    0 0 30px var(--hacker-red),
-                    0 0 60px rgba(255, 0, 0, 0.7);
-            }
-        }
-
-        /* ===== PWA INSTALL BUTTON ===== */
-        #installBtn {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--hacker-green), #00cc00);
-            color: #000;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            z-index: 9999;
-            box-shadow: 
-                0 0 15px rgba(0, 255, 0, 0.5),
-                0 5px 15px rgba(0, 0, 0, 0.3);
-            animation: installPulse 3s infinite, installFloat 6s ease-in-out infinite;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            backdrop-filter: blur(5px);
-        }
-
-        #installBtn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 
-                0 0 25px rgba(0, 255, 0, 0.7),
-                0 8px 25px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(135deg, #00ff00, #00ee00);
-        }
-
-        #installBtn:active {
-            transform: translateY(1px) scale(0.98);
-        }
-
-        @keyframes installPulse {
-            0%, 100% { 
-                box-shadow: 
-                    0 0 15px rgba(0, 255, 0, 0.5),
-                    0 5px 15px rgba(0, 0, 0, 0.3);
-            }
-            50% { 
-                box-shadow: 
-                    0 0 25px rgba(0, 255, 0, 0.7),
-                    0 5px 20px rgba(0, 0, 0, 0.4);
-            }
-        }
-
-        @keyframes installFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        /* ===== OFFLINE STATUS INDICATOR ===== */
-        #offlineStatus {
-            display: none;
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: linear-gradient(135deg, #ff9900, #ff6600);
-            color: #000;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 12px;
-            z-index: 9999;
-            animation: offlineBlink 1s infinite, offlineShake 3s infinite;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
-            backdrop-filter: blur(5px);
-        }
-
-        @keyframes offlineBlink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        @keyframes offlineShake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-2px); }
-            75% { transform: translateX(2px); }
-        }
-
-        /* ===== HIDE BROWSER CONTROLS ===== */
-        ::-webkit-scrollbar { 
-            width: 0px; 
-            height: 0px; 
-            display: none; 
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
         }
         
-        body { 
-            -ms-overflow-style: none; 
-            scrollbar-width: none; 
-            overflow: -moz-scrollbars-none;
-        }
-
-        /* ===== DISABLE TEXT SELECTION ===== */
-        * { 
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* ===== RESPONSIVE DESIGN ===== */
-        @media (max-width: 768px) {
-            .container { padding: 15px; }
-            .header { flex-direction: column; gap: 10px; text-align: center; }
-            .logo { font-size: 20px; }
-            .timestamp { font-size: 12px; }
-            .progress-section { flex-direction: column; gap: 10px; }
-            .progress-label { min-width: auto; width: 100%; text-align: center; }
-            .progress-text { text-align: center; }
-            .status-grid { grid-template-columns: repeat(2, 1fr); }
-            .alert-modal { width: 95%; padding: 20px; }
-            .alert-title { font-size: 24px; }
-            .alert-content { font-size: 16px; }
-            #installBtn { 
-                padding: 10px 20px; 
-                font-size: 14px;
-                bottom: 10px;
-                right: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .status-grid { grid-template-columns: 1fr; }
-            .line { font-size: 13px; }
-            .progress-label, .progress-text { font-size: 14px; }
-        }
-
-        /* ===== PRINT STYLES ===== */
-        @media print {
-            body { 
-                background: white !important; 
-                color: black !important; 
-            }
-            .cursor, .scanlines, .glitch-container, 
-            #installBtn, #offlineStatus { display: none !important; }
-        }
-
-        /* ===== PWA SPECIFIC STYLES ===== */
-        @media (display-mode: standalone) {
-            body {
-                -webkit-app-region: drag;
-            }
-            
-            #installBtn {
-                display: none !important;
-            }
-            
-            .status-item:nth-child(4)::after {
-                content: '📱 PWA';
-                position: absolute;
-                top: 5px;
-                right: 5px;
-                font-size: 10px;
-                color: var(--hacker-green);
-                opacity: 0.7;
-            }
-        }
-
-        /* ===== DARK MODE SUPPORT ===== */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --terminal-bg: #000000;
-                --terminal-glow: rgba(0, 255, 0, 0.15);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            :root {
-                --terminal-bg: #000000;
-                --terminal-glow: rgba(0, 255, 0, 0.2);
-            }
-        }
-
-        /* ===== HIGH CONTRAST MODE ===== */
-        @media (prefers-contrast: high) {
-            :root {
-                --hacker-green: #00ff00;
-                --hacker-red: #ff0000;
-                --hacker-yellow: #ffff00;
-                --hacker-cyan: #00ffff;
-                --hacker-magenta: #ff00ff;
-            }
-            
-            .line, .status-value, .progress-label, .progress-text {
-                font-weight: bold;
-            }
-        }
-
-        /* ===== REDUCED MOTION ===== */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-            
-            .cursor, .scanlines, .glitch,
-            .progress-bar::after, .progress-section::before,
-            #installBtn, #offlineStatus {
-                animation: none !important;
-            }
-            
-            .error, .critical, .status-critical {
-                animation: none !important;
-                opacity: 1 !important;
-            }
-        }
-
-        /* ===== TOUCH DEVICE OPTIMIZATIONS ===== */
-        @media (hover: none) and (pointer: coarse) {
-            .cursor { display: none; }
-            
-            .status-item:hover {
-                transform: none;
-                box-shadow: none;
-            }
-            
-            #installBtn {
-                padding: 16px 28px;
-                font-size: 16px;
-                min-height: 44px;
-                min-width: 44px;
-            }
-        }
-
-        /* ===== LOADING STATES ===== */
-        .loading {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--hacker-green);
+        .alert-title {
+            color: var(--hacker-red);
             font-size: 24px;
-            z-index: 10001;
-            display: none;
+            text-align: center;
+            margin-bottom: 20px;
         }
-
-        /* ===== ACCESSIBILITY ===== */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .logo { font-size: 18px; }
         }
-
-        /* ===== FOCUS STYLES ===== */
-        :focus-visible {
-            outline: 2px solid var(--hacker-cyan);
-            outline-offset: 2px;
-            border-radius: 3px;
-        }
-
-        /* ===== PERFORMANCE OPTIMIZATIONS ===== */
-        .will-change {
-            will-change: transform, opacity;
-        }
-
-        /* ===== CUSTOM PROPERTIES FALLBACK ===== */
-        @supports not (color: var(--hacker-green)) {
-            :root {
-                --hacker-green: #00ff00;
-                --hacker-red: #ff0000;
-                --hacker-yellow: #ffff00;
-                --hacker-cyan: #00ffff;
-                --hacker-magenta: #ff00ff;
-                --terminal-bg: #000000;
-                --terminal-glow: rgba(0, 255, 0, 0.1);
-            }
+        
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .container { padding: 10px; }
         }
     </style>
 </head>
 <body>
-
-    <!-- ===== MATRIX BACKGROUND CANVAS ===== -->
-    <canvas id="matrixCanvas"></canvas>
-    
-    <!-- ===== VISUAL EFFECTS ===== -->
+    <!-- MATRIX BACKGROUND -->
+    <canvas id="matrix"></canvas>
     <div class="scanlines"></div>
-    <div class="glitch-container">
-        <div class="glitch"></div>
-    </div>
     
-    <!-- ===== CUSTOM CURSOR ===== -->
-    <div class="cursor" id="cursor"></div>
-
-    <!-- ===== EXIT PREVENTION OVERLAY ===== -->
-    <div id="exitOverlay">
-        <div class="exit-message">⚠️ SYSTEM INTEGRITY COMPROMISED ⚠️</div>
-        <div style="color: var(--hacker-yellow); font-size: 24px; text-align: center; text-shadow: 0 0 10px var(--hacker-yellow);">
-            Do not attempt to close this window<br>
-            System recovery in progress...
-            <div style="margin-top: 20px; font-size: 18px; color: var(--hacker-cyan);">
-                [ESC] to continue | [F5] blocked | [Ctrl+W] disabled
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== MAIN INTERFACE ===== -->
+    <!-- MAIN INTERFACE -->
     <div class="container">
         <div class="header">
-            <div class="logo">CYBER THREAT DETECTION SYSTEM v3.14</div>
-            <div class="timestamp" id="timestamp">[TIME STAMP]</div>
+            <div class="logo">🚀 CYBERPRANK PWA v2.0</div>
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>SYSTEM BREACHED</span>
+            </div>
         </div>
-
+        
+        <!-- TERMINAL OUTPUT -->
         <div class="terminal" id="terminal">
-            <div class="line prompt">> INITIALIZING SYSTEM DIAGNOSTIC...</div>
-            <div class="line prompt">> SCANNING FOR MALICIOUS ACTIVITY...</div>
+            <div class="terminal-line prompt">> Initializing Cyber Attack Simulation...</div>
+            <div class="terminal-line prompt">> Loading PWA Components...</div>
+            <div class="terminal-line prompt">> Establishing Secure Connection...</div>
         </div>
-
-        <div class="progress-section">
-            <div class="progress-label">System Compromise Progress:</div>
-            <div class="progress-bar-container">
-                <div class="progress-bar" id="mainProgressBar"></div>
+        
+        <!-- PROGRESS -->
+        <div class="progress-container">
+            <div>Data Exfiltration Progress</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
-            <div class="progress-text" id="progressText">0%</div>
+            <div id="progressText" style="text-align: right; margin-top: 5px;">0%</div>
         </div>
-
-        <div class="status-grid">
-            <div class="status-item">
-                <div class="status-label">FIREWALL STATUS</div>
-                <div class="status-value status-critical" id="firewallStatus">BREACHED</div>
+        
+        <!-- STATS -->
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-label">FIREWALL</div>
+                <div class="stat-value error" id="firewallStat">BREACHED</div>
             </div>
-            <div class="status-item">
-                <div class="status-label">ANTIVIRUS STATUS</div>
-                <div class="status-value status-critical" id="avStatus">DISABLED</div>
+            <div class="stat-box">
+                <div class="stat-label">ANTIVIRUS</div>
+                <div class="stat-value error" id="avStat">DISABLED</div>
             </div>
-            <div class="status-item">
-                <div class="status-label">NETWORK SECURITY</div>
-                <div class="status-value status-critical" id="networkStatus">COMPROMISED</div>
+            <div class="stat-box">
+                <div class="stat-label">NETWORK</div>
+                <div class="stat-value error" id="networkStat">COMPROMISED</div>
             </div>
-            <div class="status-item">
-                <div class="status-label">DATA ENCRYPTION</div>
-                <div class="status-value status-critical" id="encryptionStatus">94%</div>
+            <div class="stat-box">
+                <div class="stat-label">ENCRYPTION</div>
+                <div class="stat-value highlight" id="encryptionStat">0%</div>
             </div>
+        </div>
+        
+        <!-- PWA STATUS -->
+        <div class="stat-box" style="grid-column: 1 / -1;">
+            <div class="stat-label">PWA STATUS</div>
+            <div class="stat-value info" id="pwaStatus">CHECKING...</div>
         </div>
     </div>
-
-    <!-- ===== ALERT MODAL ===== -->
+    
+    <!-- ALERT MODAL -->
     <div class="alert-modal" id="alertModal">
-        <div class="alert-title">🚨 CRITICAL SECURITY BREACH DETECTED 🚨</div>
-        <div class="alert-content">
-            <p>Your system has been compromised by an Advanced Persistent Threat (APT).</p>
-            <p>All defensive measures have failed. Data exfiltration in progress.</p>
-            <p>Do not disconnect from network. Do not power off device.</p>
-            <p style="color: var(--hacker-yellow); margin-top: 20px; font-weight: bold;">
-                Awaiting further instructions from Command & Control...
+        <div class="alert-title">⚠️ CRITICAL SECURITY BREACH</div>
+        <div style="color: white; line-height: 1.6;">
+            <p>Your system has been compromised by an advanced cyber attack.</p>
+            <p>All security measures have failed. Data extraction in progress.</p>
+            <br>
+            <p style="color: #00ff00; font-size: 14px;">
+                Note: This is a simulation for educational purposes only.
+                No real hacking is occurring.
             </p>
-            <div style="margin-top: 30px; padding: 15px; background: rgba(255, 0, 0, 0.1); border: 1px solid var(--hacker-red); border-radius: 5px;">
-                <p style="color: var(--hacker-cyan); font-size: 16px; margin-bottom: 10px;">
-                    ⚠️ IMPORTANT: This is a simulation
-                </p>
-                <p style="color: #ffffff; font-size: 14px; opacity: 0.8;">
-                    No actual hacking occurred. This is an educational demonstration for cybersecurity awareness.
-                </p>
-            </div>
         </div>
     </div>
-
-    <!-- ===== PWA INSTALL BUTTON ===== -->
-    <button id="installBtn" title="Install CyberPrank as Progressive Web App">
-        📱 Install App
-    </button>
-
-    <!-- ===== OFFLINE STATUS INDICATOR ===== -->
-    <div id="offlineStatus">
-        🔴 OFFLINE MODE
-    </div>
-
-    <!-- ===== ACCESSIBILITY HIDDEN TEXT ===== -->
-    <div class="sr-only">
-        Cyber security awareness simulation. Educational hacking demonstration.
-        No real hacking occurs. This is for learning purposes only.
-    </div>
-
-    <!-- ===== MAIN SCRIPT ===== -->
+    
+    <!-- PWA INSTALL BUTTON -->
+    <button id="installBtn">📱 INSTALL PWA</button>
+    
     <script>
-        // ===== STATE MANAGEMENT =====
-        let simulationState = JSON.parse(localStorage.getItem('hackSimState')) || {
-            step: 0,
-            progress: 0,
-            completed: false,
-            startTime: Date.now(),
-            sessionId: generateSessionId(),
-            pwaInstalled: false
-        };
-
-        // ===== DOM ELEMENTS =====
-        const terminal = document.getElementById('terminal');
-        const cursor = document.getElementById('cursor');
-        const mainProgressBar = document.getElementById('mainProgressBar');
-        const progressText = document.getElementById('progressText');
-        const alertModal = document.getElementById('alertModal');
-        const exitOverlay = document.getElementById('exitOverlay');
-        const timestamp = document.getElementById('timestamp');
-        const installBtn = document.getElementById('installBtn');
-        const offlineStatus = document.getElementById('offlineStatus');
-
+        // ===== PWA DETECTION =====
+        let deferredPrompt;
+        let isPWA = false;
+        
+        // Check if running as PWA
+        function checkPWA() {
+            return window.matchMedia('(display-mode: standalone)').matches || 
+                   window.navigator.standalone === true;
+        }
+        
         // ===== MATRIX BACKGROUND =====
-        const canvas = document.getElementById('matrixCanvas');
+        const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         
         function initMatrix() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             
-            const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ$#@&*%<>";
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@&*";
             const fontSize = 14;
-            const columns = Math.floor(canvas.width / fontSize);
-            const drops = Array(columns).fill(1);
+            const columns = canvas.width / fontSize;
+            const drops = [];
+            
+            for(let i = 0; i < columns; i++) {
+                drops[i] = Math.floor(Math.random() * canvas.height);
+            }
             
             function draw() {
-                ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = "#0F0";
-                ctx.font = `bold ${fontSize}px 'Courier New', monospace`;
                 
-                for (let i = 0; i < drops.length; i++) {
-                    const char = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillStyle = '#0F0';
+                ctx.font = `${fontSize}px monospace`;
+                
+                for(let i = 0; i < drops.length; i++) {
+                    const text = chars[Math.floor(Math.random() * chars.length)];
                     const x = i * fontSize;
                     const y = drops[i] * fontSize;
                     
-                    // Gradient effect
-                    const gradient = ctx.createLinearGradient(x, y - fontSize, x, y);
-                    gradient.addColorStop(0, "#0F0");
-                    gradient.addColorStop(1, "#090");
+                    ctx.fillText(text, x, y);
                     
-                    ctx.fillStyle = gradient;
-                    ctx.fillText(char, x, y);
-                    
-                    if (y > canvas.height && Math.random() > 0.975) {
+                    if(y > canvas.height && Math.random() > 0.975) {
                         drops[i] = 0;
                     }
                     drops[i]++;
@@ -1099,539 +420,210 @@
             
             setInterval(draw, 50);
         }
-
-        // ===== SESSION ID GENERATOR =====
-        function generateSessionId() {
-            return 'SESSION_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9).toUpperCase();
-        }
-
-        // ===== TIMESTAMP UPDATER =====
-        function updateTimestamp() {
-            const now = new Date();
-            const timeStr = now.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
-            timestamp.textContent = `[${timeStr}]`;
-            timestamp.title = `Session: ${simulationState.sessionId}`;
-        }
-
-        // ===== CUSTOM CURSOR MOVEMENT =====
-        document.addEventListener('mousemove', (e) => {
-            if (cursor) {
-                cursor.style.left = e.pageX + 'px';
-                cursor.style.top = e.pageY + 'px';
-            }
-        });
-
-        // ===== TERMINAL MESSAGES =====
-        const messages = [
-            {text: "> CONNECTING TO C2 SERVER: 185.XXX.XX.XXX", delay: 1200, type: "cmd"},
-            {text: "> ESTABLISHING ENCRYPTED TUNNEL...", delay: 1000, type: "cmd"},
-            {text: "> TUNNEL ESTABLISHED: AES-256-GCM", delay: 800, type: "success"},
-            {text: "> SCANNING LOCAL NETWORK...", delay: 1500, type: "cmd"},
-            {text: "> FOUND 3 VULNERABLE DEVICES", delay: 700, type: "warning"},
-            {text: "> EXPLOITING CVE-2024-XXXXX...", delay: 1800, type: "cmd"},
-            {text: "> PRIVILEGE ESCALATION: SUCCESS", delay: 900, type: "success"},
-            {text: "> DISABLING WINDOWS DEFENDER...", delay: 1300, type: "cmd"},
-            {text: "> DEFENDER STATUS: DISABLED", delay: 600, type: "error"},
-            {text: "> ACCESSING SYSTEM REGISTRY...", delay: 1100, type: "cmd"},
-            {text: "> INSTALLING PERSISTENT BACKDOOR...", delay: 1600, type: "warning"},
-            {text: "> BACKDOOR LOCATION: C:\\Windows\\System32\\drivers\\svchost.sys", delay: 1400, type: "critical"},
-            {text: "> EXTRACTING BROWSER CREDENTIALS...", delay: 1200, type: "cmd"},
-            {text: "> CHROME PASSWORDS: 47 FOUND", delay: 800, type: "warning"},
-            {text: "> FIREFOX PASSWORDS: 23 FOUND", delay: 800, type: "warning"},
-            {text: "> ACCESSING CRYPTO WALLETS...", delay: 1500, type: "cmd"},
-            {text: "> METAMASK SEED PHRASE: EXTRACTED", delay: 1000, type: "error"},
-            {text: "> CAPTURING KEYSTROKES...", delay: 900, type: "cmd"},
-            {text: "> KEYLOGGER ACTIVE: TRUE", delay: 700, type: "success"},
-            {text: "> ENABLING CAMERA ACCESS...", delay: 1300, type: "cmd"},
-            {text: "> CAMERA FEED: STREAMING", delay: 800, type: "error"},
-            {text: "> ENABLING MICROPHONE ACCESS...", delay: 1200, type: "cmd"},
-            {text: "> MICROPHONE: ACTIVE", delay: 700, type: "error"},
-            {text: "> COMPRESSING EXFILTRATED DATA...", delay: 1600, type: "cmd"},
-            {text: "> DATA SIZE: 2.7 GB", delay: 600, type: "warning"},
-            {text: "> UPLOADING TO DROP SERVER...", delay: 2000, type: "cmd"},
-            {text: "> UPLOAD COMPLETE: 100%", delay: 800, type: "success"},
-            {text: "> WIPING LOG FILES...", delay: 1400, type: "cmd"},
-            {text: "> LOGS CLEANED: SUCCESS", delay: 700, type: "success"},
-            {text: "> FINALIZING PAYLOAD DEPLOYMENT...", delay: 1800, type: "cmd"},
-            {text: "> PAYLOAD STATUS: ARMED", delay: 900, type: "critical"},
-            {text: "> MISSION COMPLETE. AWAITING FURTHER INSTRUCTIONS.", delay: 2500, type: "critical"},
-        ];
-
-        let currentStep = simulationState.step;
-        let progress = simulationState.progress;
-
+        
         // ===== TERMINAL FUNCTIONS =====
-        function addTerminalLine(text, className = "cmd") {
+        const terminal = document.getElementById('terminal');
+        let lineCount = 0;
+        
+        function addTerminalLine(text, type = 'prompt') {
             const line = document.createElement('div');
-            line.className = `line ${className}`;
+            line.className = `terminal-line ${type}`;
             line.textContent = text;
             terminal.appendChild(line);
             terminal.scrollTop = terminal.scrollHeight;
-            return line;
+            lineCount++;
+            
+            // Limit lines to 100
+            if(lineCount > 100) {
+                terminal.removeChild(terminal.firstChild);
+                lineCount--;
+            }
         }
-
+        
+        // ===== SIMULATION MESSAGES =====
+        const messages = [
+            {text: "> Scanning network infrastructure...", delay: 1000, type: "prompt"},
+            {text: "> Detected vulnerable endpoints: 3", delay: 800, type: "warning"},
+            {text: "> Exploiting CVE-2024-XXXX vulnerability...", delay: 1200, type: "prompt"},
+            {text: "> Bypassing firewall protection...", delay: 900, type: "prompt"},
+            {text: "> SUCCESS: Firewall breached", delay: 700, type: "error"},
+            {text: "> Accessing system registry...", delay: 1100, type: "prompt"},
+            {text: "> Disabling Windows Defender...", delay: 1300, type: "prompt"},
+            {text: "> SUCCESS: Antivirus disabled", delay: 600, type: "error"},
+            {text: "> Deploying keylogger payload...", delay: 1400, type: "prompt"},
+            {text: "> Keylogger active and recording...", delay: 800, type: "warning"},
+            {text: "> Accessing browser credentials...", delay: 1200, type: "prompt"},
+            {text: "> Extracting saved passwords...", delay: 1000, type: "prompt"},
+            {text: "> 47 passwords extracted from Chrome", delay: 700, type: "warning"},
+            {text: "> 23 passwords extracted from Firefox", delay: 700, type: "warning"},
+            {text: "> Accessing camera feed...", delay: 1500, type: "prompt"},
+            {text: "> Camera: ACTIVE", delay: 600, type: "error"},
+            {text: "> Accessing microphone...", delay: 1300, type: "prompt"},
+            {text: "> Microphone: LISTENING", delay: 600, type: "error"},
+            {text: "> Collecting system information...", delay: 1100, type: "prompt"},
+            {text: "> CPU: " + navigator.hardwareConcurrency + " cores", delay: 500, type: "info"},
+            {text: "> RAM: " + (navigator.deviceMemory || 'Unknown') + " GB", delay: 500, type: "info"},
+            {text: "> OS: " + navigator.platform, delay: 500, type: "info"},
+            {text: "> Compressing stolen data...", delay: 1600, type: "prompt"},
+            {text: "> Data size: 2.4 GB", delay: 700, type: "warning"},
+            {text: "> Uploading to command server...", delay: 2000, type: "prompt"},
+            {text: "> Upload complete: 100%", delay: 800, type: "success"},
+            {text: "> Cleaning attack traces...", delay: 1400, type: "prompt"},
+            {text: "> System logs wiped", delay: 700, type: "success"},
+            {text: "> Establishing persistent backdoor...", delay: 1800, type: "prompt"},
+            {text: "> Backdoor deployed successfully", delay: 900, type: "success"},
+            {text: "> MISSION COMPLETE. System fully compromised.", delay: 2500, type: "highlight"},
+        ];
+        
+        // ===== SIMULATION CONTROL =====
+        let currentStep = 0;
+        let progress = 0;
+        let simulationRunning = true;
+        
         function updateProgress(value) {
-            progress = Math.min(100, Math.max(0, value));
-            mainProgressBar.style.width = `${progress}%`;
-            progressText.textContent = `${Math.round(progress)}%`;
+            progress = value;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = Math.round(progress) + '%';
             
-            // Update status indicators dynamically
-            if (progress > 25) {
-                document.getElementById('firewallStatus').textContent = "BREACHED";
+            // Update stats
+            if(progress > 25) {
+                document.getElementById('firewallStat').textContent = "BREACHED";
             }
-            if (progress > 50) {
-                document.getElementById('avStatus').textContent = "DISABLED";
+            if(progress > 50) {
+                document.getElementById('avStat').textContent = "DISABLED";
             }
-            if (progress > 75) {
-                document.getElementById('networkStatus').textContent = "COMPROMISED";
-                const encryption = Math.min(100, 94 + (progress - 75));
-                document.getElementById('encryptionStatus').textContent = `${Math.round(encryption)}%`;
+            if(progress > 75) {
+                document.getElementById('networkStat').textContent = "HACKED";
+                document.getElementById('encryptionStat').textContent = Math.min(100, Math.round(progress)) + '%';
             }
-            
-            // Save state
-            simulationState.progress = progress;
-            localStorage.setItem('hackSimState', JSON.stringify(simulationState));
         }
-
-        // ===== SIMULATION SEQUENCE =====
-        function runSimulation() {
-            if (currentStep >= messages.length) {
-                if (!simulationState.completed) {
-                    simulationState.completed = true;
-                    localStorage.setItem('hackSimState', JSON.stringify(simulationState));
-                    
-                    // Show final alert after delay
+        
+        function runSimulationStep() {
+            if(!simulationRunning || currentStep >= messages.length) {
+                if(currentStep >= messages.length) {
+                    // Show final alert
                     setTimeout(() => {
-                        alertModal.style.display = 'block';
-                        
-                        // Play dramatic sound effect
-                        playSystemSound(200, 2, 0.1);
-                        
-                        // Add final message to terminal
-                        setTimeout(() => {
-                            addTerminalLine("> SIMULATION COMPLETE. THIS WAS AN EDUCATIONAL DEMONSTRATION.", "system");
-                            addTerminalLine("> NO REAL HACKING OCCURRED. YOUR SYSTEM IS SAFE.", "success");
-                            addTerminalLine("> Purpose: Cybersecurity Awareness Training", "prompt");
-                        }, 1000);
+                        document.getElementById('alertModal').style.display = 'block';
+                        addTerminalLine("> Simulation complete. This was an educational demonstration.", "success");
+                        addTerminalLine("> No real hacking occurred. Your system is safe.", "info");
                     }, 2000);
                 }
                 return;
             }
-
-            const msg = messages[currentStep];
             
-            // Add line to terminal
+            const msg = messages[currentStep];
             addTerminalLine(msg.text, msg.type);
             
             // Update progress
-            const progressIncrement = 100 / messages.length;
-            updateProgress(progress + progressIncrement);
+            const increment = 100 / messages.length;
+            updateProgress(progress + increment);
             
-            // Save current step
-            simulationState.step = currentStep + 1;
-            localStorage.setItem('hackSimState', JSON.stringify(simulationState));
-            
-            // Move to next step
             currentStep++;
             
-            // Random visual effects
-            if (Math.random() > 0.7) {
-                document.querySelector('.glitch').style.animationDuration = '0.05s';
-                setTimeout(() => {
-                    document.querySelector('.glitch').style.animationDuration = '0.1s';
-                }, 200);
-            }
-            
-            // Random sound effects
-            if (Math.random() > 0.8 && progress > 20) {
-                playSystemSound(600 + Math.random() * 400, 0.1, 0.05);
-            }
-            
-            // Continue simulation
-            setTimeout(runSimulation, msg.delay);
+            // Schedule next step
+            setTimeout(runSimulationStep, msg.delay);
         }
-
-        // ===== SYSTEM SOUNDS =====
-        function playSystemSound(frequency, duration, volume) {
-            try {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.type = 'sine';
-                oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
-                gainNode.gain.setValueAtTime(volume || 0.1, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + (duration || 0.5));
-                
-                oscillator.start();
-                oscillator.stop(audioContext.currentTime + (duration || 0.5));
-            } catch(e) {
-                console.log('Audio context not supported:', e);
-            }
-        }
-
-        // ===== EXIT PREVENTION =====
-        let exitPreventionActive = false;
-
-        function showExitPrevention() {
-            if (exitPreventionActive || simulationState.completed) return;
-            
-            exitPreventionActive = true;
-            exitOverlay.style.display = 'flex';
-            
-            // Play warning sound
-            playSystemSound(300, 1, 0.2);
-            
-            // Add to terminal
-            addTerminalLine("> WARNING: Unauthorized termination attempt detected!", "error");
-            addTerminalLine("> Security protocols activated. Do not close window.", "warning");
-            
-            setTimeout(() => {
-                exitOverlay.style.display = 'none';
-                exitPreventionActive = false;
-            }, 3000);
-        }
-
-        // ===== EVENT LISTENERS =====
-        window.addEventListener('beforeunload', function(e) {
-            if (!simulationState.completed) {
-                showExitPrevention();
-                e.preventDefault();
-                e.returnValue = 'Are you sure you want to leave? System breach in progress!';
-                return e.returnValue;
-            }
-        });
-
-        window.addEventListener('unload', function() {
-            if (!simulationState.completed) {
-                navigator.sendBeacon('/api/log-exit', JSON.stringify({
-                    sessionId: simulationState.sessionId,
-                    progress: progress,
-                    timeSpent: Date.now() - simulationState.startTime
-                }));
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            // Prevent browser shortcuts
-            const blockedCombos = [
-                e.ctrlKey && (e.key === 'r' || e.key === 'R'),
-                e.key === 'F5',
-                e.altKey && e.key === 'F4',
-                e.ctrlKey && e.key === 'w',
-                e.ctrlKey && e.key === 'F4',
-                e.key === 'Escape' && progress < 90
-            ];
-            
-            if (blockedCombos.some(Boolean)) {
-                e.preventDefault();
-                showExitPrevention();
-                
-                if (e.key === 'Escape' && progress >= 90) {
-                    // Allow escape only near completion
-                    return;
-                }
-            }
-            
-            // Fake keylogger (occasional)
-            if (Math.random() > 0.6 && progress > 10 && currentStep < messages.length - 5) {
-                const keyName = e.key.length === 1 ? e.key : `[${e.key.toUpperCase()}]`;
-                addTerminalLine(`> KEYLOG: ${keyName} (${e.code})`, "warning");
-            }
-        });
-
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            addTerminalLine("> SECURITY VIOLATION: Right-click disabled", "error");
-            playSystemSound(800, 0.2, 0.1);
-        });
-
-        // ===== PWA FUNCTIONALITY =====
-        let deferredPrompt;
-
-        // PWA Install Prompt
+        
+        // ===== PWA INSTALLATION =====
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
             
-            // Show install button after 15 seconds
+            // Show install button after 10 seconds
             setTimeout(() => {
-                if (deferredPrompt && !simulationState.pwaInstalled) {
+                const installBtn = document.getElementById('installBtn');
+                if(deferredPrompt && !isPWA) {
                     installBtn.style.display = 'block';
-                    
-                    // Auto-hide after 45 seconds
-                    setTimeout(() => {
-                        if (installBtn.style.display === 'block') {
-                            installBtn.style.display = 'none';
-                        }
-                    }, 45000);
+                    addTerminalLine("> PWA installation available", "info");
                 }
-            }, 15000);
+            }, 10000);
         });
-
-        // Install Button Click
-        installBtn.addEventListener('click', async () => {
-            if (!deferredPrompt) return;
+        
+        document.getElementById('installBtn').addEventListener('click', async () => {
+            if(!deferredPrompt) return;
             
-            installBtn.style.display = 'none';
             deferredPrompt.prompt();
-            
             const { outcome } = await deferredPrompt.userChoice;
-            console.log(`User ${outcome}ed the PWA install`);
             
-            if (outcome === 'accepted') {
-                simulationState.pwaInstalled = true;
-                localStorage.setItem('hackSimState', JSON.stringify(simulationState));
-                
-                addTerminalLine("> PWA Installation Successful! App is now installable.", "success");
-                addTerminalLine("> Running in enhanced PWA mode...", "system");
-                
-                // Play success sound
-                playSystemSound(800, 0.5, 0.1);
-            }
-            
-            deferredPrompt = null;
-        });
-
-        // PWA Installed Event
-        window.addEventListener('appinstalled', () => {
-            console.log('CyberPrank PWA was installed');
-            simulationState.pwaInstalled = true;
-            localStorage.setItem('hackSimState', JSON.stringify(simulationState));
-            installBtn.style.display = 'none';
-            deferredPrompt = null;
-            
-            // Update status to show PWA mode
-            if (document.getElementById('networkStatus')) {
-                document.getElementById('networkStatus').textContent = "PWA MODE";
-                document.getElementById('networkStatus').className = "status-value status-good";
-            }
-        });
-
-        // Offline/Online Detection
-        function updateOnlineStatus() {
-            if (navigator.onLine) {
-                offlineStatus.style.display = 'none';
-                if (progress > 10) {
-                    addTerminalLine("> Network connection restored.", "success");
-                }
+            if(outcome === 'accepted') {
+                addTerminalLine("> PWA installed successfully!", "success");
+                isPWA = true;
+                document.getElementById('pwaStatus').textContent = "INSTALLED";
+                document.getElementById('installBtn').style.display = 'none';
             } else {
-                offlineStatus.style.display = 'block';
-                if (progress > 10) {
-                    addTerminalLine("> WARNING: Network connection lost. Running in offline mode.", "warning");
-                }
+                addTerminalLine("> PWA installation declined", "warning");
             }
-        }
-
-        window.addEventListener('online', updateOnlineStatus);
-        window.addEventListener('offline', updateOnlineStatus);
-
-        // Service Worker Registration
-        if ('serviceWorker' in navigator) {
+            
+            deferredPrompt = null;
+        });
+        
+        // ===== SERVICE WORKER REGISTRATION =====
+        if('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('service-worker.js')
+                navigator.serviceWorker.register('sw.js')
                     .then(registration => {
-                        console.log('ServiceWorker registered:', registration.scope);
-                        
-                        // Check for updates
-                        registration.addEventListener('updatefound', () => {
-                            const newWorker = registration.installing;
-                            console.log('ServiceWorker update found:', newWorker);
-                        });
+                        console.log('SW registered:', registration);
+                        addTerminalLine("> Service Worker activated", "success");
+                        document.getElementById('pwaStatus').textContent = "ACTIVE";
                     })
                     .catch(error => {
-                        console.log('ServiceWorker registration failed:', error);
+                        console.log('SW registration failed:', error);
+                        addTerminalLine("> Service Worker failed to activate", "error");
                     });
             });
         }
-
-        // PWA Detection
-        function isRunningAsPWA() {
-            return window.matchMedia('(display-mode: standalone)').matches || 
-                   window.navigator.standalone ||
-                   document.referrer.includes('android-app://');
-        }
-
+        
         // ===== INITIALIZATION =====
-        window.onload = function() {
+        window.addEventListener('load', () => {
             // Initialize matrix
             initMatrix();
             
-            // Update timestamp
-            updateTimestamp();
-            setInterval(updateTimestamp, 1000);
-            
-            // Check online status
-            updateOnlineStatus();
-            
-            // Check if running as PWA
-            if (isRunningAsPWA()) {
-                console.log('Running as PWA');
-                simulationState.pwaInstalled = true;
-                
-                setTimeout(() => {
-                    addTerminalLine("> PWA Mode: Enhanced security active", "system");
-                    addTerminalLine("> Running in standalone application mode", "success");
-                }, 3000);
+            // Check PWA status
+            isPWA = checkPWA();
+            if(isPWA) {
+                document.getElementById('pwaStatus').textContent = "RUNNING AS PWA";
+                addTerminalLine("> Running in PWA mode", "success");
             }
             
-            // Restore previous state or start new
-            if (simulationState.step > 0) {
-                // Replay messages up to current step
-                for (let i = 0; i < Math.min(simulationState.step, messages.length); i++) {
-                    addTerminalLine(messages[i].text, messages[i].type);
-                }
-                updateProgress(simulationState.progress);
-                
-                // Continue from where we left off
-                if (!simulationState.completed) {
-                    setTimeout(runSimulation, 2000);
-                } else {
-                    setTimeout(() => {
-                        alertModal.style.display = 'block';
-                        addTerminalLine("> Simulation completed previously. Reload to restart.", "prompt");
-                    }, 1000);
-                }
-            } else {
-                // Start new simulation with system info
-                setTimeout(() => {
-                    addTerminalLine(`> SYSTEM: ${navigator.platform}`, "cmd");
-                    addTerminalLine(`> USER AGENT: ${navigator.userAgent.substring(0, 60)}...`, "cmd");
-                    addTerminalLine(`> RESOLUTION: ${window.screen.width}x${window.screen.height}`, "cmd");
-                    addTerminalLine(`> TIMEZONE: ${Intl.DateTimeFormat().resolvedOptions().timeZone}`, "cmd");
-                    addTerminalLine(`> SESSION ID: ${simulationState.sessionId}`, "system");
-                    addTerminalLine("> INITIALIZING CYBER ATTACK SIMULATION...", "warning");
-                    
-                    // Start simulation after initial info
-                    setTimeout(runSimulation, 2000);
-                }, 1000);
-            }
-        };
-
-        // ===== WINDOW RESIZE HANDLER =====
-        let resizeTimeout;
-        window.addEventListener('resize', function() {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                initMatrix();
-                
-                // Add resize notification to terminal
-                if (progress > 5) {
-                    addTerminalLine(`> Resolution changed: ${window.innerWidth}x${window.innerHeight}`, "system");
-                }
-            }, 250);
+            // Add system info
+            addTerminalLine("> System: " + navigator.userAgent.substring(0, 50) + "...", "info");
+            addTerminalLine("> Resolution: " + window.screen.width + "x" + window.screen.height, "info");
+            addTerminalLine("> Time: " + new Date().toLocaleString(), "info");
+            
+            // Start simulation
+            setTimeout(runSimulationStep, 2000);
         });
-
-        // ===== PERFORMANCE MONITORING =====
-        if ('performance' in window) {
-            const perfObserver = new PerformanceObserver((list) => {
-                for (const entry of list.getEntries()) {
-                    if (entry.duration > 100) {
-                        console.warn('Long task detected:', entry);
-                    }
-                }
-            });
-            
-            perfObserver.observe({ entryTypes: ['longtask'] });
-        }
-
-        // ===== ERROR HANDLING =====
-        window.addEventListener('error', function(e) {
-            console.error('Global error:', e);
-            
-            // Don't show errors to user during simulation
-            if (progress < 90) {
-                addTerminalLine("> System error detected and handled.", "warning");
-            }
-            
-            return true;
+        
+        // ===== WINDOW RESIZE =====
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         });
-
-        // ===== PAGE VISIBILITY =====
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden && !simulationState.completed) {
-                addTerminalLine("> WARNING: Tab switched. Simulation paused.", "warning");
-                playSystemSound(500, 0.3, 0.1);
-            } else if (!document.hidden && !simulationState.completed) {
-                addTerminalLine("> Simulation resumed.", "success");
+        
+        // ===== PREVENT EXIT =====
+        window.addEventListener('beforeunload', (e) => {
+            if(progress < 90 && simulationRunning) {
+                e.preventDefault();
+                e.returnValue = 'Attack in progress. Are you sure you want to leave?';
+                return e.returnValue;
             }
         });
-
-        // ===== BATTERY STATUS (OPTIONAL) =====
-        if ('getBattery' in navigator) {
-            navigator.getBattery().then(battery => {
-                battery.addEventListener('levelchange', () => {
-                    if (battery.level < 0.2 && progress > 50) {
-                        addTerminalLine(`> Battery critical: ${Math.round(battery.level * 100)}%`, "warning");
-                    }
-                });
-            });
-        }
-
-        // ===== DEVICE ORIENTATION =====
-        window.addEventListener('deviceorientation', function(e) {
-            if (Math.abs(e.beta) > 45 || Math.abs(e.gamma) > 45) {
-                // Device is tilted significantly
-                if (progress > 30) {
-                    addTerminalLine("> Unusual device movement detected.", "system");
-                }
-            }
-        }, true);
-
-        // ===== FINAL CLEANUP =====
-        window.addEventListener('pagehide', function() {
-            // Cleanup resources
-            if (canvas) {
-                canvas.width = 0;
-                canvas.height = 0;
+        
+        // ===== KEYBOARD SHORTCUTS =====
+        document.addEventListener('keydown', (e) => {
+            // Prevent F5, Ctrl+R, Ctrl+W
+            if(e.key === 'F5' || (e.ctrlKey && e.key === 'r') || (e.ctrlKey && e.key === 'w')) {
+                e.preventDefault();
+                addTerminalLine("> Security violation: Page refresh blocked", "error");
             }
             
-            // Save final state
-            localStorage.setItem('hackSimState', JSON.stringify(simulationState));
-        });
-
-        // ===== UTILITY FUNCTIONS =====
-        function getRandomIP() {
-            return `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
-        }
-
-        function formatBytes(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
-
-        // ===== EXPORT FOR DEBUGGING =====
-        window.CyberPrank = {
-            state: simulationState,
-            progress: () => progress,
-            restart: () => {
-                localStorage.removeItem('hackSimState');
-                location.reload();
-            },
-            skipToEnd: () => {
-                currentStep = messages.length;
+            // Debug command
+            if(e.ctrlKey && e.shiftKey && e.key === 'D') {
+                addTerminalLine("> Debug mode activated", "highlight");
+                simulationRunning = false;
                 updateProgress(100);
-                runSimulation();
             }
-        };
-
-        // ===== CONSOLE WELCOME MESSAGE =====
-        console.log('%c🚨 CYBERPRANK SIMULATION 🚨', 'color: #0f0; font-size: 24px; font-weight: bold;');
-        console.log('%cThis is a cybersecurity awareness simulation.', 'color: #0ff;');
-        console.log('%cNo real hacking occurs. For educational purposes only.', 'color: #ff0;');
-        console.log(`Session ID: ${simulationState.sessionId}`);
-        console.log('Debug commands available at window.CyberPrank');
-
-        // ===== INITIAL SOUND =====
-        setTimeout(() => {
-            playSystemSound(440, 0.3, 0.05);
-        }, 500);
+        });
     </script>
 </body>
 </html>
