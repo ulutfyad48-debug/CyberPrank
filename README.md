@@ -1,22 +1,47 @@
-# Cyber Security Awareness Demo
+# 🚀 CyberPrank PWA - Advanced Cybersecurity Simulation
 
-⚠️ **DISCLAIMER**: This is a FAKE hacking simulation for educational purposes only.
+⚠️ **EDUCATIONAL PURPOSE ONLY** - This is a FAKE hacking simulation.
 No real hacking occurs. No data is accessed or stolen.
 
-## Purpose:
-- Demonstrate how real cyber attacks look
-- Raise awareness about phishing attempts
-- Show importance of cyber security
+## 🔥 Features
 
-## Features:
-- Realistic terminal interface
+### 🎯 Advanced Simulation
+- Realistic terminal interface with Matrix effect
 - Fake progress bars and system alerts
-- Harmless prank page
-- Educational purpose only
+- Simulated data exfiltration
+- Firewall breach simulation
+- Antivirus disable simulation
 
-## Usage:
-Simply open `index.html` in any browser.
+### 📱 PWA Features
+- Install as standalone app
+- Offline functionality
+- Service Worker caching
+- Push notifications
+- Background sync
+- App shortcuts
 
-## Warning:
-This is NOT real hacking. It's a simulation.
-Use only for educational purposes.
+### 🎨 Visual Effects
+- Matrix code rain background
+- Scan lines overlay
+- Glitch effects
+- Real-time animations
+- Responsive design
+
+### 🛡️ Security Features
+- Fake system compromise
+- Simulated network attacks
+- Educational alerts
+- Safety disclaimers
+
+## 📦 Installation
+
+### As Web App:
+1. Open `https://your-domain.com/CyberPrank/`
+2. Click "Install" button when prompted
+3. Or use browser menu: ⋮ → "Install CyberPrank"
+
+### Manual Installation:
+```bash
+git clone https://github.com/your-username/CyberPrank.git
+cd CyberPrank
+# Open index.html in browser
