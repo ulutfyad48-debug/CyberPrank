@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM INTEGRITY ALERT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #00ff00;
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            cursor: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ff0000;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            animation: pulseCursor 1s infinite;
+        }
+
+        @keyframes pulseCursor {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        /* Matrix Background */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        /* Scan Lines */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                transparent 50%, 
+                rgba(0, 255, 0, 0.03) 50%);
+            background-size: 100% 4px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Glitch Effect */
+        .glitch-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .glitch {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+            animation: glitchAnim 0.1s infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes glitchAnim {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 4;
+            padding: 30px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #00ff00;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        .timestamp {
+            color: #00ffff;
+            font-size: 14px;
+        }
+
+        /* Terminal Area */
+        .terminal {
+            flex: 1;
+            overflow-y: auto;
+            background: rgba(0, 20, 0, 0.3);
+            border: 1px solid #00ff00;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+        }
+
+        .line {
+            margin-bottom: 8px;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .prompt {
+            color: #00ff00;
+        }
+
+        .cmd {
+            color: #ffffff;
+        }
+
+        .success {
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .error {
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000;
+            animation: blink 0.5s infinite;
+        }
+
+        .warning {
+            color: #ffff00;
+            text-shadow: 0 0 5px #ffff00;
+        }
+
+        .critical {
+            color: #ff00ff;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Progress Section */
+        .progress-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background: rgba(0, 20, 0, 0.5);
+            border: 1px solid #00ff00;
+        }
+
+        .progress-label {
+            min-width: 200px;
+            color: #00ffff;
+        }
+
+        .progress-bar-container {
+            flex: 1;
+            height: 20px;
+            background: #002200;
+            border: 1px solid #00ff00;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #002200, #00ff00);
+            transition: width 1s ease;
+            position: relative;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            min-width: 100px;
+            text-align: right;
+            color: #ffff00;
+        }
+
+        /* System Status */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .status-item {
+            padding: 15px;
+            background: rgba(0, 20, 0, 0.3);
+            border: 1px solid #00ff00;
+            text-align: center;
+        }
+
+        .status-label {
+            color: #00ffff;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .status-value {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .status-good { color: #00ff00; }
+        .status-warning { color: #ffff00; }
+        .status-critical { color: #ff0000; }
+
+        /* Alert Modal */
+        .alert-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            border: 3px solid #ff0000;
+            padding: 40px;
+            width: 80%;
+            max-width: 600px;
+            z-index: 10000;
+            display: none;
+            box-shadow: 0 0 100px rgba(255, 0, 0, 0.7);
+            animation: alertPulse 2s infinite;
+        }
+
+        @keyframes alertPulse {
+            0%, 100% { box-shadow: 0 0 100px rgba(255, 0, 0, 0.7); }
+            50% { box-shadow: 0 0 150px rgba(255, 0, 0, 0.9); }
+        }
+
+        .alert-title {
+            color: #ff0000;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #ff0000;
+        }
+
+        .alert-content {
+            color: #ffffff;
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Hide all browser controls */
+        ::-webkit-scrollbar { display: none; }
+        body { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Disable text selection */
+        * { 
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Fullscreen overlay for exit prevention */
+        #exitOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            display: none;
+        }
+
+        .exit-message {
+            color: #ff0000;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px #ff0000;
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Matrix Background -->
+    <canvas id="matrixCanvas"></canvas>
+    
+    <!-- Visual Effects -->
+    <div class="scanlines"></div>
+    <div class="glitch-container">
+        <div class="glitch"></div>
+    </div>
+    
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Exit Prevention Overlay -->
+    <div id="exitOverlay">
+        <div class="exit-message">⚠️ SYSTEM INTEGRITY COMPROMISED ⚠️</div>
+        <div style="color: #ffff00; font-size: 24px; text-align: center;">
+            Do not attempt to close this window<br>
+            System recovery in progress...
+        </div>
+    </div>
+
+    <!-- Main Interface -->
+    <div class="container">
+        <div class="header">
+            <div class="logo">CYBER THREAT DETECTION SYSTEM v3.14</div>
+            <div class="timestamp" id="timestamp">[TIME STAMP]</div>
+        </div>
+
+        <div class="terminal" id="terminal">
+            <div class="line prompt">> INITIALIZING SYSTEM DIAGNOSTIC...</div>
+            <div class="line prompt">> SCANNING FOR MALICIOUS ACTIVITY...</div>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-label">System Compromise Progress:</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="mainProgressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">0%</div>
+        </div>
+
+        <div class="status-grid">
+            <div class="status-item">
+                <div class="status-label">FIREWALL STATUS</div>
+                <div class="status-value status-critical" id="firewallStatus">BREACHED</div>
+            </div>
+            <div class="status-item">
+                <div class="status-label">ANTIVIRUS STATUS</div>
+                <div class="status-value status-critical" id="avStatus">DISABLED</div>
+            </div>
+            <div class="status-item">
+                <div class="status-label">NETWORK SECURITY</div>
+                <div class="status-value status-critical" id="networkStatus">COMPROMISED</div>
+            </div>
+            <div class="status-item">
+                <div class="status-label">DATA ENCRYPTION</div>
+                <div class="status-value status-critical" id="encryptionStatus">94%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Modal -->
+    <div class="alert-modal" id="alertModal">
+        <div class="alert-title">🚨 CRITICAL SECURITY BREACH DETECTED 🚨</div>
+        <div class="alert-content">
+            <p>Your system has been compromised by an Advanced Persistent Threat (APT).</p>
+            <p>All defensive measures have failed. Data exfiltration in progress.</p>
+            <p>Do not disconnect from network. Do not power off device.</p>
+            <p style="color: #ffff00; margin-top: 20px;">Awaiting further instructions from Command & Control...</p>
+        </div>
+    </div>
+
+    <script>
+        // State management for refresh persistence
+        let simulationState = JSON.parse(localStorage.getItem('hackSimState')) || {
+            step: 0,
+            progress: 0,
+            completed: false,
+            startTime: Date.now()
+        };
+
+        // DOM Elements
+        const terminal = document.getElementById('terminal');
+        const cursor = document.getElementById('cursor');
+        const mainProgressBar = document.getElementById('mainProgressBar');
+        const progressText = document.getElementById('progressText');
+        const alertModal = document.getElementById('alertModal');
+        const exitOverlay = document.getElementById('exitOverlay');
+        const timestamp = document.getElementById('timestamp');
+
+        // Matrix Background
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = "01";
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#0F0";
+            ctx.font = fontSize + "px monospace";
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 50);
+
+        // Update timestamp
+        function updateTimestamp() {
+            const now = new Date();
+            const timeStr = now.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+            timestamp.textContent = `[${timeStr}]`;
+        }
+        setInterval(updateTimestamp, 1000);
+        updateTimestamp();
+
+        // Custom cursor movement
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+        });
+
+        // Terminal messages with realistic technical details
+        const messages = [
+            {text: "> CONNECTING TO C2 SERVER: 185.XXX.XX.XXX", delay: 1200, type: "cmd"},
+            {text: "> ESTABLISHING ENCRYPTED TUNNEL...", delay: 1000, type: "cmd"},
+            {text: "> TUNNEL ESTABLISHED: AES-256-GCM", delay: 800, type: "success"},
+            {text: "> SCANNING LOCAL NETWORK...", delay: 1500, type: "cmd"},
+            {text: "> FOUND 3 VULNERABLE DEVICES", delay: 700, type: "warning"},
+            {text: "> EXPLOITING CVE-2024-XXXXX...", delay: 1800, type: "cmd"},
+            {text: "> PRIVILEGE ESCALATION: SUCCESS", delay: 900, type: "success"},
+            {text: "> DISABLING WINDOWS DEFENDER...", delay: 1300, type: "cmd"},
+            {text: "> DEFENDER STATUS: DISABLED", delay: 600, type: "error"},
+            {text: "> ACCESSING SYSTEM REGISTRY...", delay: 1100, type: "cmd"},
+            {text: "> INSTALLING PERSISTENT BACKDOOR...", delay: 1600, type: "warning"},
+            {text: "> BACKDOOR LOCATION: C:\\Windows\\System32\\drivers\\svchost.sys", delay: 1400, type: "critical"},
+            {text: "> EXTRACTING BROWSER CREDENTIALS...", delay: 1200, type: "cmd"},
+            {text: "> CHROME PASSWORDS: 47 FOUND", delay: 800, type: "warning"},
+            {text: "> FIREFOX PASSWORDS: 23 FOUND", delay: 800, type: "warning"},
+            {text: "> ACCESSING CRYPTO WALLETS...", delay: 1500, type: "cmd"},
+            {text: "> METAMASK SEED PHRASE: EXTRACTED", delay: 1000, type: "error"},
+            {text: "> CAPTURING KEYSTROKES...", delay: 900, type: "cmd"},
+            {text: "> KEYLOGGER ACTIVE: TRUE", delay: 700, type: "success"},
+            {text: "> ENABLING CAMERA ACCESS...", delay: 1300, type: "cmd"},
+            {text: "> CAMERA FEED: STREAMING", delay: 800, type: "error"},
+            {text: "> ENABLING MICROPHONE ACCESS...", delay: 1200, type: "cmd"},
+            {text: "> MICROPHONE: ACTIVE", delay: 700, type: "error"},
+            {text: "> COMPRESSING EXFILTRATED DATA...", delay: 1600, type: "cmd"},
+            {text: "> DATA SIZE: 2.7 GB", delay: 600, type: "warning"},
+            {text: "> UPLOADING TO DROP SERVER...", delay: 2000, type: "cmd"},
+            {text: "> UPLOAD COMPLETE: 100%", delay: 800, type: "success"},
+            {text: "> WIPING LOG FILES...", delay: 1400, type: "cmd"},
+            {text: "> LOGS CLEANED: SUCCESS", delay: 700, type: "success"},
+            {text: "> FINALIZING PAYLOAD DEPLOYMENT...", delay: 1800, type: "cmd"},
+            {text: "> PAYLOAD STATUS: ARMED", delay: 900, type: "critical"},
+            {text: "> MISSION COMPLETE. AWAITING FURTHER INSTRUCTIONS.", delay: 2500, type: "critical"},
+        ];
+
+        let currentStep = simulationState.step;
+        let progress = simulationState.progress;
+
+        // Typewriter effect for terminal
+        function addTerminalLine(text, className = "cmd") {
+            const line = document.createElement('div');
+            line.className = `line ${className}`;
+            line.textContent = text;
+            terminal.appendChild(line);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        // Update progress
+        function updateProgress(value) {
+            progress = value;
+            mainProgressBar.style.width = `${value}%`;
+            progressText.textContent = `${value}%`;
+            
+            // Update status indicators
+            if (value > 30) {
+                document.getElementById('firewallStatus').textContent = "BREACHED";
+            }
+            if (value > 50) {
+                document.getElementById('avStatus').textContent = "DISABLED";
+            }
+            if (value > 70) {
+                document.getElementById('networkStatus').textContent = "COMPROMISED";
+                document.getElementById('encryptionStatus').textContent = `${Math.min(100, value + 20)}%`;
+            }
+            
+            // Save state
+            simulationState.progress = value;
+            localStorage.setItem('hackSimState', JSON.stringify(simulationState));
+        }
+
+        // Simulation sequence
+        function runSimulation() {
+            if (currentStep >= messages.length) {
+                if (!simulationState.completed) {
+                    simulationState.completed = true;
+                    localStorage.setItem('hackSimState', JSON.stringify(simulationState));
+                    
+                    // Show final alert
+                    setTimeout(() => {
+                        alertModal.style.display = 'block';
+                        
+                        // Play fake system sounds
+                        try {
+                            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                            const oscillator = audioContext.createOscillator();
+                            const gainNode = audioContext.createGain();
+                            
+                            oscillator.connect(gainNode);
+                            gainNode.connect(audioContext.destination);
+                            
+                            oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+                            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2);
+                            
+                            oscillator.start();
+                            oscillator.stop(audioContext.currentTime + 2);
+                        } catch(e) {}
+                    }, 2000);
+                }
+                return;
+            }
+
+            const msg = messages[currentStep];
+            
+            // Add line to terminal
+            addTerminalLine(msg.text, msg.type);
+            
+            // Update progress
+            progress = Math.min(100, progress + (100 / messages.length));
+            updateProgress(progress);
+            
+            // Save current step
+            simulationState.step = currentStep + 1;
+            localStorage.setItem('hackSimState', JSON.stringify(simulationState));
+            
+            // Move to next step
+            currentStep++;
+            
+            // Random effects
+            if (Math.random() > 0.7) {
+                document.querySelector('.glitch').style.animationDuration = '0.05s';
+                setTimeout(() => {
+                    document.querySelector('.glitch').style.animationDuration = '0.1s';
+                }, 200);
+            }
+            
+            // Random fake error sounds
+            if (Math.random() > 0.8 && progress > 20) {
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    oscillator.connect(audioContext.destination);
+                    oscillator.frequency.setValueAtTime(600 + Math.random() * 400, audioContext.currentTime);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.1);
+                } catch(e) {}
+            }
+            
+            // Continue simulation
+            setTimeout(runSimulation, msg.delay);
+        }
+
+        // Prevent page exit
+        let exitPreventionActive = false;
+
+        function showExitPrevention() {
+            exitPreventionActive = true;
+            exitOverlay.style.display = 'flex';
+            
+            setTimeout(() => {
+                exitOverlay.style.display = 'none';
+                exitPreventionActive = false;
+            }, 3000);
+        }
+
+        // Event listeners for exit prevention
+        window.addEventListener('beforeunload', function(e) {
+            if (!simulationState.completed) {
+                showExitPrevention();
+                e.preventDefault();
+                e.returnValue = '';
+                return '';
+            }
+        });
+
+        window.addEventListener('unload', function() {
+            if (!simulationState.completed) {
+                showExitPrevention();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            // Prevent F5, Ctrl+R, Ctrl+W, Alt+F4, etc.
+            if ((e.ctrlKey && (e.key === 'r' || e.key === 'R')) || 
+                e.key === 'F5' || 
+                (e.altKey && e.key === 'F4') ||
+                (e.ctrlKey && e.key === 'w')) {
+                
+                e.preventDefault();
+                showExitPrevention();
+                
+                // Add warning to terminal
+                addTerminalLine("> WARNING: Unauthorized termination attempt detected!", "error");
+            }
+            
+            // Fake keylogger message
+            if (Math.random() > 0.6 && progress > 10) {
+                addTerminalLine(`> KEYLOG: ${e.key.toUpperCase()} (${e.code})`, "warning");
+            }
+        });
+
+        // Prevent right-click
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            addTerminalLine("> SECURITY VIOLATION: Right-click disabled", "error");
+        });
+
+        // Initialize
+        window.onload = function() {
+            // Restore previous state if any
+            if (simulationState.step > 0) {
+                // Replay messages up to current step
+                for (let i = 0; i < Math.min(simulationState.step, messages.length); i++) {
+                    addTerminalLine(messages[i].text, messages[i].type);
+                }
+                updateProgress(simulationState.progress);
+                
+                // Continue from where we left off
+                if (!simulationState.completed) {
+                    setTimeout(runSimulation, 2000);
+                } else {
+                    alertModal.style.display = 'block';
+                }
+            } else {
+                // Start new simulation
+                setTimeout(runSimulation, 2000);
+            }
+            
+            // Add initial system info
+            setTimeout(() => {
+                addTerminalLine(`> SYSTEM: ${navigator.platform}`, "cmd");
+                addTerminalLine(`> BROWSER: ${navigator.userAgent.substring(0, 80)}...`, "cmd");
+                addTerminalLine(`> RESOLUTION: ${window.screen.width}x${window.screen.height}`, "cmd");
+                addTerminalLine(`> TIMEZONE: ${Intl.DateTimeFormat().resolvedOptions().timeZone}`, "cmd");
+            }, 500);
+        };
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
