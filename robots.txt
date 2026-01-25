@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://ulutfyad48-debug.github.io/CyberPrank/sitemap.xml
