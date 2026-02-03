@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Google Adsense - Responsive Setup [web:1][web:5] -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9a69dc275b7941b8cd82ea95d7ce2b30" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- PWA META TAGS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -25,10 +22,10 @@
     <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
     <link rel="apple-touch-icon" sizes="120x120" href="icons/icon-120.png">
     
-    <!-- SEO META TAGS - Search Console Compatible [web:2][web:6] -->
+    <!-- SEO META TAGS -->
     <meta name="title" content="CyberPrank - Advanced Security Simulation PWA">
-    <meta name="description" content="Professional cybersecurity education PWA. Realistic penetration testing simulation with full offline support.">
-    <meta name="keywords" content="cybersecurity training, ethical hacking demo, PWA security simulation, penetration testing, cyber prank educational">
+    <meta name="description" content="Professional cybersecurity education PWA with mobile-first design">
+    <meta name="keywords" content="cybersecurity training, ethical hacking, mobile PWA, penetration testing">
     <meta name="author" content="CyberPrank Security Team">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://ulutfyad48-debug.github.io/CyberPrank/">
@@ -36,23 +33,40 @@
     <!-- Open Graph & Twitter -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ulutfyad48-debug.github.io/CyberPrank/">
-    <meta property="og:title" content="CyberPrank - Professional Security Simulation">
-    <meta property="og:description" content="Advanced PWA cybersecurity training simulation">
+    <meta property="og:title" content="CyberPrank - Professional Security Training">
+    <meta property="og:description" content="Mobile-first cybersecurity training PWA">
     <meta property="og:image" content="https://ulutfyad48-debug.github.io/CyberPrank/icons/icon-512.png">
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="CyberPrank Security Demo">
-    <meta property="twitter:description" content="Professional hacking simulation PWA">
     
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="icons/icon-192.png">
     <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
     
-    <title>🚨 CYBERPRANK v2.1 | Professional Security Training PWA</title>
+    <!-- Costa Ads -->
+    <script src="https://lozengehelped.com/76/40/cd/7640cd213b7ae5aad895680d4c4ecfba.js"></script>
+    <script>
+        var atOptions = {
+            'key' : '9a69dc275b7941b8cd82ea95d7ce2b30',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+        };
+    </script>
+    <script src="https://lozengehelped.com/9a69dc275b7941b8cd82ea95d7ce2b30/invoke.js"></script>
+    
+    <title>🚨 CYBERPRANK v3.0 | Mobile-First Security PWA</title>
     
     <style>
-        /* Optimized Styles - Cleaner & Faster [web:3] */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* CSS Reset & Mobile-First Approach */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
         
         :root {
             --hacker-green: #00ff00;
@@ -61,44 +75,180 @@
             --hacker-purple: #aa00ff;
             --hacker-cyan: #00ffff;
             --terminal-bg: #000000;
+            --safe-area-inset-top: env(safe-area-inset-top);
+            --safe-area-inset-bottom: env(safe-area-inset-bottom);
+        }
+        
+        html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-size: 16px;
         }
         
         body {
             background: #000;
             color: var(--hacker-green);
-            font-family: 'Courier New', monospace;
-            overflow: hidden;
+            font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
             height: 100vh;
+            height: -webkit-fill-available;
+            height: calc(var(--vh, 1vh) * 100);
             width: 100vw;
+            overflow: hidden;
             position: fixed;
-            cursor: none;
+            touch-action: manipulation;
+            overscroll-behavior: none;
+            padding: 0;
+            margin: 0;
         }
         
-        #matrix { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.25; }
+        /* Matrix Background - Optimized for Mobile */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        
         .scanlines {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, transparent 50%, rgba(0,255,0,0.03) 50%);
-            background-size: 100% 4px; z-index: 2; pointer-events: none;
-            animation: scan 12s linear infinite;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,255,0,0.02) 50%);
+            background-size: 100% 6px;
+            z-index: 2;
+            pointer-events: none;
+            animation: scan 8s linear infinite;
         }
-        @keyframes scan { 0% { background-position: 0 0; } 100% { background-position: 0 100vh; } }
         
-        .container { position: relative; z-index: 10; padding: 20px; height: 100vh; display: flex; flex-direction: column; background: rgba(0,0,0,0.85); }
+        @keyframes scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100vh; }
+        }
         
-        .header { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 2px solid var(--hacker-green); margin-bottom: 20px; }
-        .logo { font-size: 24px; font-weight: bold; color: var(--hacker-red); text-shadow: 0 0 10px var(--hacker-red); }
-        .status-indicator { display: flex; align-items: center; gap: 10px; }
-        .status-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--hacker-red); animation: pulse 1s infinite; }
-        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+        /* Main Container - Mobile Optimized */
+        .container {
+            position: relative;
+            z-index: 10;
+            padding: 12px;
+            padding-top: calc(12px + var(--safe-area-inset-top, 0px));
+            padding-bottom: calc(12px + var(--safe-area-inset-bottom, 0px));
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: rgba(0,0,0,0.95);
+            gap: 12px;
+            overflow: hidden;
+        }
         
-        /* Ad Slot - Responsive & Professional [web:1][web:12] */
-        .ad-container { margin: 20px 0; text-align: center; }
-        .ad-container ins { display: block !important; width: 100% !important; max-width: 728px; margin: 0 auto; }
-        .ad-container iframe { max-width: 100% !important; width: 100% !important; height: auto !important; }
+        /* Header - Mobile Friendly */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--hacker-green);
+            flex-shrink: 0;
+        }
         
-        .terminal { flex: 1; overflow-y: auto; background: rgba(0,20,0,0.4); border: 1px solid var(--hacker-green); padding: 20px; margin-bottom: 20px; font-size: 14px; line-height: 1.5; }
-        .terminal-line { margin-bottom: 8px; opacity: 0; animation: fadeIn 0.4s forwards; }
-        @keyframes fadeIn { to { opacity: 1; } }
+        .logo {
+            font-size: clamp(16px, 4vw, 20px);
+            font-weight: bold;
+            color: var(--hacker-red);
+            text-shadow: 0 0 8px var(--hacker-red);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 70%;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--hacker-red);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        /* Ad Container - Mobile Responsive */
+        .ad-container {
+            margin: 10px 0;
+            text-align: center;
+            min-height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 30, 0, 0.2);
+            border: 1px solid var(--hacker-green);
+            border-radius: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .ad-container ins {
+            display: block !important;
+            width: 100% !important;
+            max-width: 728px;
+            margin: 0 auto;
+        }
+        
+        /* Terminal - Touch Friendly */
+        .terminal {
+            flex: 1;
+            overflow-y: auto;
+            background: rgba(0,20,0,0.3);
+            border: 1px solid var(--hacker-green);
+            padding: 12px;
+            font-size: 13px;
+            line-height: 1.4;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--hacker-green) rgba(0,20,0,0.3);
+        }
+        
+        .terminal::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .terminal::-webkit-scrollbar-track {
+            background: rgba(0,20,0,0.3);
+        }
+        
+        .terminal::-webkit-scrollbar-thumb {
+            background: var(--hacker-green);
+            border-radius: 3px;
+        }
+        
+        .terminal-line {
+            margin-bottom: 6px;
+            opacity: 0;
+            animation: fadeIn 0.3s forwards;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
         .prompt { color: var(--hacker-green); }
         .success { color: #00ff00; }
         .error { color: #ff0000; }
@@ -106,32 +256,259 @@
         .info { color: #0088ff; }
         .highlight { color: #ff00ff; }
         
-        .progress-container { background: rgba(0,30,0,0.6); padding: 15px; border: 1px solid var(--hacker-green); margin-bottom: 20px; }
-        .progress-bar { height: 20px; background: rgba(0,50,0,0.6); border: 1px solid var(--hacker-green); overflow: hidden; margin-top: 10px; }
-        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #002200, #00ff00); transition: width 0.6s ease; }
+        /* Progress Container */
+        .progress-container {
+            background: rgba(0,30,0,0.4);
+            padding: 12px;
+            border: 1px solid var(--hacker-green);
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
         
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px; }
-        .stat-box { padding: 20px; background: rgba(0,20,0,0.5); border: 1px solid var(--hacker-green); text-align: center; border-radius: 5px; }
-        .stat-label { font-size: 12px; color: var(--hacker-cyan); margin-bottom: 8px; }
-        .stat-value { font-size: 20px; font-weight: bold; }
+        .progress-bar {
+            height: 16px;
+            background: rgba(0,50,0,0.6);
+            border: 1px solid var(--hacker-green);
+            overflow: hidden;
+            margin-top: 8px;
+            border-radius: 2px;
+        }
         
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #002200, #00ff00);
+            transition: width 0.5s ease;
+            border-radius: 1px;
+        }
+        
+        /* Stats Grid - Mobile Responsive */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        
+        .stat-box {
+            padding: 12px;
+            background: rgba(0,20,0,0.4);
+            border: 1px solid var(--hacker-green);
+            text-align: center;
+            border-radius: 4px;
+        }
+        
+        .stat-label {
+            font-size: 11px;
+            color: var(--hacker-cyan);
+            margin-bottom: 4px;
+            white-space: nowrap;
+        }
+        
+        .stat-value {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        /* Install Button - Touch Friendly */
         #installBtn {
-            position: fixed; bottom: 25px; right: 25px; background: linear-gradient(45deg, #00ff00, #008800); color: black;
-            border: none; padding: 15px 25px; border-radius: 10px; font-family: 'Courier New', monospace; font-weight: bold;
-            cursor: pointer; z-index: 1000; display: none; box-shadow: 0 0 20px #00ff00; animation: installPulse 2s infinite;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #00ff00, #008800);
+            color: black;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 25px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 0 15px #00ff00;
+            animation: installPulse 2s infinite;
+            touch-action: manipulation;
+            min-height: 48px;
+            min-width: 48px;
         }
-        @keyframes installPulse { 0%,100% { box-shadow: 0 0 15px #00ff00; } 50% { box-shadow: 0 0 30px #00ff00; } }
         
+        @keyframes installPulse {
+            0%, 100% { box-shadow: 0 0 15px #00ff00; }
+            50% { box-shadow: 0 0 25px #00ff00; }
+        }
+        
+        /* Alert Modal - Mobile Friendly */
         .alert-modal {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.95);
-            border: 3px solid var(--hacker-red); padding: 35px; width: 90%; max-width: 650px; z-index: 10000; display: none;
-            box-shadow: 0 0 60px rgba(255,0,0,0.6); border-radius: 10px; text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.98);
+            border: 2px solid var(--hacker-red);
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            max-height: 80vh;
+            z-index: 10000;
+            display: none;
+            box-shadow: 0 0 40px rgba(255,0,0,0.5);
+            border-radius: 8px;
+            text-align: center;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
-        .alert-title { color: var(--hacker-red); font-size: 26px; margin-bottom: 25px; }
         
-        /* Responsive */
-        @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } .logo { font-size: 20px; } }
-        @media (max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } .container { padding: 15px; } }
+        .alert-title {
+            color: var(--hacker-red);
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        /* Touch Menu */
+        .touch-menu {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 900;
+        }
+        
+        .touch-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0,255,0,0.2);
+            border: 1px solid var(--hacker-green);
+            color: var(--hacker-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            touch-action: manipulation;
+            user-select: none;
+        }
+        
+        /* Desktop Optimizations */
+        @media (min-width: 768px) {
+            body {
+                cursor: default;
+            }
+            
+            .container {
+                padding: 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            .terminal {
+                font-size: 14px;
+                padding: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+            }
+            
+            .stat-box {
+                padding: 15px;
+            }
+            
+            .stat-label {
+                font-size: 12px;
+            }
+            
+            .stat-value {
+                font-size: 18px;
+            }
+            
+            .ad-container {
+                min-height: 90px;
+            }
+        }
+        
+        /* Landscape Mode */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .container {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .header {
+                width: 100%;
+            }
+            
+            .ad-container {
+                width: 100%;
+                order: 1;
+            }
+            
+            .terminal {
+                flex: 1;
+                min-height: 200px;
+                order: 2;
+            }
+            
+            .progress-container {
+                width: 100%;
+                order: 3;
+            }
+            
+            .stats-grid {
+                width: 100%;
+                order: 4;
+            }
+            
+            #installBtn {
+                bottom: 10px;
+                right: 10px;
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+        }
+        
+        /* High DPI Screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .scanlines {
+                background-size: 100% 3px;
+            }
+        }
+        
+        /* Battery Saver Mode */
+        @media (prefers-reduced-motion: reduce) {
+            .status-dot,
+            .scanlines,
+            #installBtn,
+            .terminal-line {
+                animation: none;
+            }
+        }
+        
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #000;
+            }
+        }
+        
+        /* iOS Safe Areas */
+        @supports (padding: max(0px)) {
+            .container {
+                padding-top: max(12px, env(safe-area-inset-top));
+                padding-bottom: max(12px, env(safe-area-inset-bottom));
+                padding-left: max(12px, env(safe-area-inset-left));
+                padding-right: max(12px, env(safe-area-inset-right));
+            }
+        }
     </style>
 </head>
 <body>
@@ -140,220 +517,412 @@
     
     <div class="container">
         <div class="header">
-            <div class="logo">🚀 CYBERPRANK PROFESSIONAL v2.1</div>
+            <div class="logo">🚀 CYBERPRANK v3.0</div>
             <div class="status-indicator">
                 <div class="status-dot"></div>
-                <span>🔴 SYSTEM COMPROMISED</span>
+                <span>🔴 ACTIVE</span>
             </div>
         </div>
         
-        <!-- Responsive Google Ad Slot [web:1][web:5] -->
-        <div class="ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9a69dc275b7941b8cd82ea95d7ce2b30"
-                 data-ad-slot="7640cd213b7ae5aad895680d4c4ecfba"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <!-- Costa Ads Container -->
+        <div class="ad-container" id="adContainer">
+            <!-- Ads will load here -->
         </div>
         
         <div class="terminal" id="terminal">
-            <div class="terminal-line prompt">> Initializing Professional Cyber Attack Simulation v2.1...</div>
-            <div class="terminal-line prompt">> Loading Enhanced PWA Components...</div>
-            <div class="terminal-line info">> Offline Mode: ACTIVE</div>
+            <div class="terminal-line prompt">> Initializing Mobile-First Security PWA v3.0...</div>
+            <div class="terminal-line info">> Device: <span id="deviceInfo">Detecting...</span></div>
+            <div class="terminal-line info">> Touch Support: <span id="touchInfo">Testing...</span></div>
+            <div class="terminal-line info">> PWA Mode: <span id="pwaMode">Checking...</span></div>
         </div>
         
         <div class="progress-container">
-            <div>Data Exfiltration Progress</div>
+            <div>Penetration Test Progress</div>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <div id="progressText" style="text-align: right; margin-top: 8px; color: var(--hacker-cyan);">0%</div>
+            <div id="progressText" style="text-align: right; margin-top: 6px; font-size: 12px; color: var(--hacker-cyan);">0%</div>
         </div>
         
         <div class="stats-grid">
             <div class="stat-box">
-                <div class="stat-label">🔥 FIREWALL</div>
-                <div class="stat-value error" id="firewallStat">BREACHED</div>
+                <div class="stat-label">🔥 SECURITY</div>
+                <div class="stat-value error" id="securityStat">TESTING</div>
             </div>
             <div class="stat-box">
-                <div class="stat-label">🛡️ ANTIVIRUS</div>
-                <div class="stat-value error" id="avStat">DISABLED</div>
+                <div class="stat-label">📱 MOBILE</div>
+                <div class="stat-value success" id="mobileStat">OPTIMIZED</div>
             </div>
             <div class="stat-box">
-                <div class="stat-label">🌐 NETWORK</div>
-                <div class="stat-value error" id="networkStat">COMPROMISED</div>
+                <div class="stat-label">⚡ SPEED</div>
+                <div class="stat-value info" id="speedStat">HIGH</div>
             </div>
             <div class="stat-box">
-                <div class="stat-label">🔒 ENCRYPTION</div>
-                <div class="stat-value highlight" id="encryptionStat">0%</div>
+                <div class="stat-label">🔧 PWA</div>
+                <div class="stat-value highlight" id="pwaStat">READY</div>
             </div>
         </div>
         
-        <div class="stat-box" style="grid-column: 1 / -1;">
-            <div class="stat-label">📱 PWA STATUS</div>
-            <div class="stat-value info" id="pwaStatus">INITIALIZING...</div>
+        <!-- Touch Menu for Mobile -->
+        <div class="touch-menu">
+            <div class="touch-btn" onclick="speedUpSimulation()">⚡</div>
+            <div class="touch-btn" onclick="showAlert()">⚠️</div>
+            <div class="touch-btn" onclick="toggleFullscreen()">📱</div>
         </div>
     </div>
     
+    <!-- Alert Modal -->
     <div class="alert-modal" id="alertModal">
-        <div class="alert-title">⚠️ CRITICAL SECURITY BREACH DETECTED</div>
-        <div style="color: white; line-height: 1.7;">
-            <p><strong>Your system has been fully compromised</strong> by advanced persistent threat (APT).</p>
-            <p>All defenses bypassed. Data exfiltration: 100% complete.</p>
+        <div class="alert-title">🚨 MOBILE SECURITY TRAINING</div>
+        <div style="color: white; line-height: 1.6; font-size: 14px;">
+            <p><strong>This is an educational simulation</strong> for cybersecurity training.</p>
+            <p>✅ Mobile-optimized PWA</p>
+            <p>✅ Touch-friendly interface</p>
+            <p>✅ Offline capability</p>
+            <p>✅ No real harm occurs</p>
             <br>
-            <p style="color: #00ff00; font-size: 15px; font-weight: bold;">
-                🔒 This is a <em>professional educational simulation</em>. No real harm occurs.
+            <p style="color: var(--hacker-green); font-weight: bold;">
+                Install as PWA for full offline access!
             </p>
-            <p style="color: var(--hacker-cyan);">Install as PWA for offline training access.</p>
+        </div>
+        <div style="margin-top: 20px;">
+            <button onclick="closeAlert()" style="
+                background: var(--hacker-red);
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                font-family: inherit;
+                cursor: pointer;
+                font-weight: bold;
+            ">UNDERSTOOD</button>
         </div>
     </div>
     
     <button id="installBtn">📱 INSTALL PWA</button>
     
     <script>
-        // Professional Matrix Rain - Optimized [web:3]
+        // ========== MOBILE OPTIMIZATION ==========
+        
+        // Fix viewport height for mobile browsers
+        function setVH() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        
+        setVH();
+        window.addEventListener('resize', setVH);
+        window.addEventListener('orientationchange', setVH);
+        
+        // Detect device and touch support
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        const isPWA = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+        
+        // Update device info
+        document.getElementById('deviceInfo').textContent = isMobile ? 'Mobile' : 'Desktop';
+        document.getElementById('touchInfo').textContent = isTouch ? 'Supported' : 'Not Supported';
+        document.getElementById('pwaMode').textContent = isPWA ? 'Standalone' : 'Browser';
+        
+        // ========== MATRIX EFFECT ==========
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
+        
         function initMatrix() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@&*+-=<>?';
-            const fontSize = 14;
+            
+            const chars = '01';
+            const fontSize = isMobile ? 12 : 14;
             const columns = Math.floor(canvas.width / fontSize);
-            const drops = Array(columns).fill(0).map(() => Math.random() * canvas.height / fontSize);
+            const drops = new Array(columns).fill(1);
+            
             function draw() {
-                ctx.fillStyle = 'rgba(0,0,0,0.04)';
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = '#0F0';
                 ctx.font = `${fontSize}px monospace`;
-                drops.forEach((y, i) => {
-                    const text = chars[Math.floor(Math.random() * chars.length)];
-                    ctx.fillText(text, i * fontSize, y * fontSize);
-                    if (y * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const char = chars[Math.floor(Math.random() * chars.length)];
+                    const x = i * fontSize;
+                    const y = drops[i] * fontSize;
+                    
+                    ctx.fillText(char, x, y);
+                    
+                    if (y > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
                     drops[i]++;
-                });
+                }
             }
-            setInterval(draw, 35);
+            
+            setInterval(draw, 50);
         }
         
-        // Terminal & Simulation Logic - Cleaned Up
+        // ========== TERMINAL SIMULATION ==========
         const terminal = document.getElementById('terminal');
         let lineCount = 0;
-        function addTerminalLine(text, type = 'prompt') {
-            const line = document.createElement('div');
-            line.className = `terminal-line ${type}`;
-            line.textContent = text;
-            terminal.appendChild(line);
-            terminal.scrollTop = terminal.scrollHeight;
-            lineCount++;
-            if (lineCount > 120) terminal.removeChild(terminal.firstChild) && lineCount--;
+        
+        function addTerminalLine(text, type = 'prompt', delay = 0) {
+            setTimeout(() => {
+                const line = document.createElement('div');
+                line.className = `terminal-line ${type}`;
+                line.textContent = text;
+                terminal.appendChild(line);
+                terminal.scrollTop = terminal.scrollHeight;
+                
+                lineCount++;
+                if (lineCount > 50) {
+                    terminal.removeChild(terminal.firstChild);
+                    lineCount--;
+                }
+            }, delay);
         }
         
-        const messages = [
-            {text: "> Network scan complete: 47 vulnerabilities found", delay: 1200, type: "warning"},
-            {text: "> Exploiting zero-day CVE-2026-001", delay: 1500, type: "prompt"},
-            {text: "> 🔥 FIREWALL BREACH CONFIRMED", delay: 800, type: "error"},
-            {text: "> Injecting rootkit payload...", delay: 1300, type: "prompt"},
-            {text: "> 🛡️ ANTIVIRUS BYPASSED", delay: 900, type: "success"},
-            {text: "> Extracting 2.7GB sensitive data", delay: 1100, type: "warning"},
-            {text: "> 🌐 FULL NETWORK CONTROL ESTABLISHED", delay: 1400, type: "error"},
-            {text: "> Persistent backdoor deployed", delay: 1600, type: "highlight"},
-            {text: "> 🎯 MISSION COMPLETE - System Owned", delay: 2500, type: "success"}
+        const simulationSteps = [
+            {text: "> Scanning network for vulnerabilities...", type: "info", delay: 500},
+            {text: "> Detected 3 security weaknesses", type: "warning", delay: 1500},
+            {text: "> Exploiting vulnerability #1...", type: "prompt", delay: 2500},
+            {text: "> ✅ Firewall bypassed", type: "success", delay: 3500},
+            {text: "> Accessing system files...", type: "info", delay: 4500},
+            {text: "> Found 127 sensitive files", type: "warning", delay: 5500},
+            {text: "> Downloading encrypted data...", type: "prompt", delay: 6500},
+            {text: "> 🔥 SYSTEM COMPROMISED", type: "error", delay: 7500},
+            {text: "> 🎯 Training simulation complete", type: "success", delay: 8500},
+            {text: "> Install as PWA for offline practice", type: "highlight", delay: 9500}
         ];
         
-        let currentStep = 0, progress = 0, simulationRunning = true;
+        let progress = 0;
+        let simulationInterval;
+        
         function updateProgress(value) {
-            progress = Math.min(100, value);
+            progress = Math.min(100, Math.max(0, value));
             document.getElementById('progressFill').style.width = progress + '%';
             document.getElementById('progressText').textContent = Math.round(progress) + '%';
-            const stats = {25: ['firewallStat', 'BREACHED'], 50: ['avStat', 'DISABLED'], 75: ['networkStat', 'OWNED']};
-            Object.entries(stats).forEach(([p, [id, text]]) => { if (progress > p) document.getElementById(id).textContent = text; });
-            document.getElementById('encryptionStat').textContent = Math.round(progress) + '%';
+            
+            // Update stats based on progress
+            if (progress >= 25) document.getElementById('securityStat').textContent = 'WEAK';
+            if (progress >= 50) document.getElementById('securityStat').textContent = 'BREACHED';
+            if (progress >= 75) document.getElementById('securityStat').textContent = 'COMPROMISED';
+            if (progress >= 100) document.getElementById('securityStat').textContent = 'OWNED';
         }
         
-        function runSimulationStep() {
-            if (!simulationRunning || currentStep >= messages.length) {
-                if (currentStep >= messages.length) {
-                    setTimeout(() => {
-                        document.getElementById('alertModal').style.display = 'block';
-                        addTerminalLine("> Training simulation complete. Skills acquired.", "success");
-                        addTerminalLine("> PWA ready for offline cybersecurity practice.", "info");
-                    }, 1500);
+        function startSimulation() {
+            let step = 0;
+            simulationInterval = setInterval(() => {
+                if (step < simulationSteps.length) {
+                    const sim = simulationSteps[step];
+                    addTerminalLine(sim.text, sim.type);
+                    updateProgress(progress + (100 / simulationSteps.length));
+                    step++;
+                } else {
+                    clearInterval(simulationInterval);
+                    document.getElementById('alertModal').style.display = 'block';
                 }
-                return;
-            }
-            const msg = messages[currentStep];
-            addTerminalLine(msg.text, msg.type);
-            updateProgress(progress + (100 / messages.length));
-            currentStep++;
-            setTimeout(runSimulationStep, msg.delay);
+            }, 1000);
         }
         
-        // Enhanced PWA Support [web:4][page:2]
-        let deferredPrompt, isPWA = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+        // ========== PWA INSTALLATION ==========
+        let deferredPrompt;
+        
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
+            
             setTimeout(() => {
                 if (deferredPrompt && !isPWA) {
                     document.getElementById('installBtn').style.display = 'block';
-                    addTerminalLine("> 📱 PWA Install Available - Offline Ready", "info");
-                    document.getElementById('pwaStatus').textContent = "INSTALL READY";
+                    addTerminalLine("> 📱 PWA Installation Available", "info", 1000);
+                    document.getElementById('pwaStat').textContent = "INSTALL";
                 }
-            }, 8000);
+            }, 5000);
         });
         
         document.getElementById('installBtn').addEventListener('click', async () => {
             if (!deferredPrompt) return;
+            
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
+            
             if (outcome === 'accepted') {
-                addTerminalLine("> ✅ PWA Installed - Full Offline Access", "success");
-                document.getElementById('pwaStatus').textContent = "INSTALLED";
+                addTerminalLine("> ✅ PWA Installed Successfully", "success");
+                document.getElementById('pwaStat').textContent = "INSTALLED";
                 document.getElementById('installBtn').style.display = 'none';
+                document.getElementById('pwaMode').textContent = "Standalone";
             }
+            
             deferredPrompt = null;
         });
         
+        // ========== SERVICE WORKER ==========
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').then(() => {
-                addTerminalLine("> 🔧 Service Worker: Offline Mode Active", "success");
-                document.getElementById('pwaStatus').textContent = isPWA ? "OFFLINE PWA" : "ONLINE READY";
-            }).catch(() => addTerminalLine("> ⚠️ Service Worker: Check sw.js", "warning"));
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(() => {
+                        addTerminalLine("> 🔧 Offline Mode: Active", "success", 200);
+                        document.getElementById('pwaStat').textContent = "OFFLINE";
+                    })
+                    .catch(() => {
+                        addTerminalLine("> ⚠️ Offline Mode: Limited", "warning", 200);
+                    });
+            });
         }
         
-        // Initialization
-        window.addEventListener('load', () => {
-            initMatrix();
-            addTerminalLine(`> Device: ${navigator.platform} | ${navigator.hardwareConcurrency || 'Unknown'} cores`, "info");
-            addTerminalLine(`> Screen: ${window.screen.width}x${window.screen.height} | Offline: Ready`, "info");
-            if (isPWA) addTerminalLine("> 🚀 Running in Standalone PWA Mode", "highlight");
-            setTimeout(runSimulationStep, 2500);
-        });
-        
-        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
-        
-        // Security Features
-        window.addEventListener('beforeunload', (e) => {
-            if (progress < 95 && simulationRunning) {
-                e.preventDefault();
-                return '⚠️ Critical simulation in progress. Confirm exit?';
-            }
-        });
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'F5' || (e.ctrlKey && (e.key === 'r' || e.key === 'w'))) {
-                e.preventDefault();
-                addTerminalLine("> 🔒 Security: Refresh/Close Blocked During Attack", "error");
-            }
-            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-                simulationRunning = false;
+        // ========== TOUCH FUNCTIONS ==========
+        function speedUpSimulation() {
+            if (simulationInterval) {
+                clearInterval(simulationInterval);
                 updateProgress(100);
-                addTerminalLine("> 🛠️ Debug: Instant Complete", "highlight");
+                simulationSteps.forEach((sim, index) => {
+                    addTerminalLine(sim.text, sim.type, index * 100);
+                });
+                document.getElementById('alertModal').style.display = 'block';
+            }
+        }
+        
+        function showAlert() {
+            document.getElementById('alertModal').style.display = 'block';
+        }
+        
+        function closeAlert() {
+            document.getElementById('alertModal').style.display = 'none';
+        }
+        
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+        
+        // ========== ADS MANAGEMENT ==========
+        function loadAd() {
+            const adContainer = document.getElementById('adContainer');
+            const isLandscape = window.innerWidth > window.innerHeight;
+            
+            if (isMobile && !isLandscape) {
+                // Mobile portrait
+                atOptions.width = 300;
+                atOptions.height = 250;
+            } else if (isMobile && isLandscape) {
+                // Mobile landscape
+                atOptions.width = 728;
+                atOptions.height = 90;
+            } else {
+                // Desktop
+                atOptions.width = 728;
+                atOptions.height = 90;
+            }
+            
+            // Reload ad with new settings
+            adContainer.innerHTML = `
+                <script type="text/javascript">
+                    atOptions = ${JSON.stringify(atOptions)};
+                <\/script>
+                <script src="https://lozengehelped.com/9a69dc275b7941b8cd82ea95d7ce2b30/invoke.js"><\/script>
+            `;
+            
+            // Execute the script
+            eval(atOptions.toString());
+        }
+        
+        // ========== PERFORMANCE OPTIMIZATIONS ==========
+        
+        // Debounce resize events
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                setVH();
+                loadAd();
+            }, 250);
+        });
+        
+        // Prevent zoom on mobile
+        document.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        // Prevent pull-to-refresh
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        // ========== INITIALIZATION ==========
+        window.addEventListener('load', () => {
+            // Set initial values
+            document.getElementById('mobileStat').textContent = isMobile ? 'OPTIMIZED' : 'READY';
+            document.getElementById('speedStat').textContent = 'HIGH';
+            
+            // Start effects
+            initMatrix();
+            
+            // Load appropriate ad
+            loadAd();
+            
+            // Start simulation after a brief delay
+            setTimeout(() => {
+                startSimulation();
+            }, 1000);
+            
+            // Add welcome message
+            addTerminalLine("> Welcome to CyberPrank Security Training", "highlight");
+            addTerminalLine("> Touch buttons on right for quick actions", "info");
+            
+            // Performance monitoring
+            if ('connection' in navigator) {
+                const speed = navigator.connection.effectiveType;
+                addTerminalLine(`> Network: ${speed.toUpperCase()}`, "info");
+                document.getElementById('speedStat').textContent = speed.toUpperCase();
             }
         });
+        
+        // Handle page visibility
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                addTerminalLine("> Session paused", "warning");
+            } else {
+                addTerminalLine("> Session resumed", "success");
+            }
+        });
+        
+        // Handle offline/online status
+        window.addEventListener('offline', () => {
+            addTerminalLine("> ⚠️ You are now offline", "warning");
+            document.getElementById('pwaStat').textContent = "OFFLINE";
+        });
+        
+        window.addEventListener('online', () => {
+            addTerminalLine("> ✅ Connection restored", "success");
+            document.getElementById('pwaStat').textContent = "ONLINE";
+        });
+        
+        // Battery status (if supported)
+        if ('getBattery' in navigator) {
+            navigator.getBattery().then(battery => {
+                const updateBattery = () => {
+                    const level = Math.round(battery.level * 100);
+                    if (level < 20) {
+                        addTerminalLine(`> 🔋 Low battery: ${level}%`, "warning");
+                    }
+                };
+                
+                battery.addEventListener('levelchange', updateBattery);
+                updateBattery();
+            });
+        }
     </script>
 </body>
 </html>
