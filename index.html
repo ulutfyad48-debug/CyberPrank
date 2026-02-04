@@ -3,926 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <!-- PWA META TAGS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="CyberPrank">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <link rel="manifest" href="manifest.json">
+    <title>💀 CYBERPRANK v4.0 | KERNEL ACCESS</title>
     <meta name="theme-color" content="#000000">
-    <meta name="msapplication-TileColor" content="#00ff00">
-    <meta name="msapplication-TileImage" content="icons/icon-144.png">
-    
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" href="icons/icon-152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
-    <link rel="apple-touch-icon" sizes="167x167" href="icons/icon-167.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="icons/icon-120.png">
-    
-    <!-- SEO META TAGS -->
-    <meta name="title" content="CyberPrank - Advanced Security Simulation PWA">
-    <meta name="description" content="Professional cybersecurity education PWA with mobile-first design">
-    <meta name="keywords" content="cybersecurity training, ethical hacking, mobile PWA, penetration testing">
-    <meta name="author" content="CyberPrank Security Team">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://ulutfyad48-debug.github.io/CyberPrank/">
-    
-    <!-- Open Graph & Twitter -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ulutfyad48-debug.github.io/CyberPrank/">
-    <meta property="og:title" content="CyberPrank - Professional Security Training">
-    <meta property="og:description" content="Mobile-first cybersecurity training PWA">
-    <meta property="og:image" content="https://ulutfyad48-debug.github.io/CyberPrank/icons/icon-512.png">
-    
-    <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="icons/icon-192.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
-    
-    <!-- Costa Ads -->
-    <script src="https://lozengehelped.com/76/40/cd/7640cd213b7ae5aad895680d4c4ecfba.js"></script>
-    <script>
-        var atOptions = {
-            'key' : '9a69dc275b7941b8cd82ea95d7ce2b30',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
-        };
-    </script>
-    <script src="https://lozengehelped.com/9a69dc275b7941b8cd82ea95d7ce2b30/invoke.js"></script>
-    
-    <title>🚨 CYBERPRANK v3.0 | Mobile-First Security PWA</title>
+    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIkN5YmVyUHJhbmsgdjQuMCIsCiAgInNob3J0X25hbWUiOiJDeWJlckNvcmUiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzAwMDAwMCIsCiAgInRoZW1lX2NvbG9yIjogIiMwMGZmMDAiCn0=">
     
     <style>
-        /* CSS Reset & Mobile-First Approach */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
         :root {
-            --hacker-green: #00ff00;
-            --hacker-red: #ff0000;
-            --hacker-blue: #0088ff;
-            --hacker-purple: #aa00ff;
-            --hacker-cyan: #00ffff;
-            --terminal-bg: #000000;
-            --safe-area-inset-top: env(safe-area-inset-top);
-            --safe-area-inset-bottom: env(safe-area-inset-bottom);
+            --neon-green: #0f0;
+            --alert-red: #f00;
+            --sys-blue: #0af;
+            --bg-black: #050505;
+            --glass: rgba(0, 20, 0, 0.7);
         }
-        
-        html {
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            font-size: 16px;
-        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Courier New', monospace; }
         
         body {
-            background: #000;
-            color: var(--hacker-green);
-            font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
-            height: 100vh;
-            height: -webkit-fill-available;
-            height: calc(var(--vh, 1vh) * 100);
-            width: 100vw;
+            background-color: var(--bg-black);
+            color: var(--neon-green);
             overflow: hidden;
-            position: fixed;
-            touch-action: manipulation;
-            overscroll-behavior: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        /* Matrix Background - Optimized for Mobile */
-        #matrix {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0.15;
-            pointer-events: none;
-        }
-        
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 50%, rgba(0,255,0,0.02) 50%);
-            background-size: 100% 6px;
-            z-index: 2;
-            pointer-events: none;
-            animation: scan 8s linear infinite;
-        }
-        
-        @keyframes scan {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 100vh; }
-        }
-        
-        /* Main Container - Mobile Optimized */
-        .container {
-            position: relative;
-            z-index: 10;
-            padding: 12px;
-            padding-top: calc(12px + var(--safe-area-inset-top, 0px));
-            padding-bottom: calc(12px + var(--safe-area-inset-bottom, 0px));
-            height: 100%;
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            background: rgba(0,0,0,0.95);
-            gap: 12px;
-            overflow: hidden;
         }
-        
-        /* Header - Mobile Friendly */
-        .header {
+
+        /* LAYERS */
+        #canvas-layer { position: fixed; top: 0; left: 0; z-index: 0; opacity: 0.4; }
+        #ui-layer { position: relative; z-index: 10; height: 100%; display: flex; flex-direction: column; padding: 10px; }
+
+        /* HEADER */
+        .hud-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--hacker-green);
-            flex-shrink: 0;
+            border-bottom: 2px solid var(--neon-green);
+            padding-bottom: 5px;
+            background: linear-gradient(90deg, rgba(0,255,0,0.1), transparent);
         }
         
-        .logo {
-            font-size: clamp(16px, 4vw, 20px);
-            font-weight: bold;
-            color: var(--hacker-red);
-            text-shadow: 0 0 8px var(--hacker-red);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 70%;
-        }
-        
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-        }
-        
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--hacker-red);
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-        
-        /* Ad Container - Mobile Responsive */
-        .ad-container {
-            margin: 10px 0;
-            text-align: center;
-            min-height: 250px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0, 30, 0, 0.2);
-            border: 1px solid var(--hacker-green);
-            border-radius: 4px;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-        
-        .ad-container ins {
-            display: block !important;
-            width: 100% !important;
-            max-width: 728px;
-            margin: 0 auto;
-        }
-        
-        /* Terminal - Touch Friendly */
-        .terminal {
+        .sys-status { font-size: 12px; color: var(--alert-red); animation: blink 1s infinite; }
+
+        /* MAIN TERMINAL */
+        #terminal-window {
             flex: 1;
+            background: rgba(0,0,0,0.85);
+            border: 1px solid #333;
+            margin: 10px 0;
+            padding: 10px;
             overflow-y: auto;
-            background: rgba(0,20,0,0.3);
-            border: 1px solid var(--hacker-green);
-            padding: 12px;
-            font-size: 13px;
-            line-height: 1.4;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            scrollbar-color: var(--hacker-green) rgba(0,20,0,0.3);
-        }
-        
-        .terminal::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .terminal::-webkit-scrollbar-track {
-            background: rgba(0,20,0,0.3);
-        }
-        
-        .terminal::-webkit-scrollbar-thumb {
-            background: var(--hacker-green);
-            border-radius: 3px;
-        }
-        
-        .terminal-line {
-            margin-bottom: 6px;
-            opacity: 0;
-            animation: fadeIn 0.3s forwards;
-            word-wrap: break-word;
-            word-break: break-word;
-        }
-        
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-        
-        .prompt { color: var(--hacker-green); }
-        .success { color: #00ff00; }
-        .error { color: #ff0000; }
-        .warning { color: #ffff00; }
-        .info { color: #0088ff; }
-        .highlight { color: #ff00ff; }
-        
-        /* Progress Container */
-        .progress-container {
-            background: rgba(0,30,0,0.4);
-            padding: 12px;
-            border: 1px solid var(--hacker-green);
-            border-radius: 4px;
-            flex-shrink: 0;
-        }
-        
-        .progress-bar {
-            height: 16px;
-            background: rgba(0,50,0,0.6);
-            border: 1px solid var(--hacker-green);
-            overflow: hidden;
-            margin-top: 8px;
-            border-radius: 2px;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #002200, #00ff00);
-            transition: width 0.5s ease;
-            border-radius: 1px;
-        }
-        
-        /* Stats Grid - Mobile Responsive */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            flex-shrink: 0;
-        }
-        
-        .stat-box {
-            padding: 12px;
-            background: rgba(0,20,0,0.4);
-            border: 1px solid var(--hacker-green);
-            text-align: center;
-            border-radius: 4px;
-        }
-        
-        .stat-label {
-            font-size: 11px;
-            color: var(--hacker-cyan);
-            margin-bottom: 4px;
-            white-space: nowrap;
-        }
-        
-        .stat-value {
-            font-size: 16px;
-            font-weight: bold;
-        }
-        
-        /* Install Button - Touch Friendly */
-        #installBtn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(45deg, #00ff00, #008800);
-            color: black;
-            border: none;
-            padding: 14px 20px;
-            border-radius: 25px;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
+            box-shadow: 0 0 20px rgba(0,255,0,0.1);
             font-size: 14px;
-            cursor: pointer;
-            z-index: 1000;
-            display: none;
-            box-shadow: 0 0 15px #00ff00;
-            animation: installPulse 2s infinite;
-            touch-action: manipulation;
-            min-height: 48px;
-            min-width: 48px;
+        }
+
+        .line { margin-bottom: 4px; word-break: break-all; }
+        .line.user { color: var(--sys-blue); }
+        .line.sys { color: var(--neon-green); }
+        .line.err { color: var(--alert-red); text-shadow: 0 0 5px red; }
+        .line.info { color: #ff0; }
+
+        /* INPUT AREA */
+        .input-line {
+            display: flex;
+            align-items: center;
+            background: #000;
+            border: 1px solid var(--neon-green);
+            padding: 10px;
         }
         
-        @keyframes installPulse {
-            0%, 100% { box-shadow: 0 0 15px #00ff00; }
-            50% { box-shadow: 0 0 25px #00ff00; }
-        }
+        .prompt-char { color: var(--neon-green); margin-right: 10px; font-weight: bold; }
         
-        /* Alert Modal - Mobile Friendly */
-        .alert-modal {
+        #cmd-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            font-family: inherit;
+            font-size: 16px;
+            outline: none;
+        }
+
+        /* MINIGAME OVERLAY */
+        #hex-overlay {
             position: fixed;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.98);
-            border: 2px solid var(--hacker-red);
+            background: rgba(0,0,0,0.95);
+            border: 2px solid var(--sys-blue);
             padding: 20px;
+            display: none;
+            z-index: 100;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(0,100,255,0.3);
             width: 90%;
             max-width: 400px;
-            max-height: 80vh;
-            z-index: 10000;
-            display: none;
-            box-shadow: 0 0 40px rgba(255,0,0,0.5);
-            border-radius: 8px;
-            text-align: center;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
         }
-        
-        .alert-title {
-            color: var(--hacker-red);
-            font-size: 20px;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-        
-        /* Touch Menu */
-        .touch-menu {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
+
+        .hex-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 10px;
-            z-index: 900;
+            margin: 20px 0;
         }
-        
-        .touch-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(0,255,0,0.2);
-            border: 1px solid var(--hacker-green);
-            color: var(--hacker-green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+        .hex-btn {
+            background: rgba(0, 50, 100, 0.3);
+            border: 1px solid var(--sys-blue);
+            color: var(--sys-blue);
+            padding: 10px;
             cursor: pointer;
-            font-size: 20px;
-            touch-action: manipulation;
-            user-select: none;
+            transition: 0.2s;
         }
-        
-        /* Desktop Optimizations */
-        @media (min-width: 768px) {
-            body {
-                cursor: default;
-            }
-            
-            .container {
-                padding: 20px;
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-            
-            .logo {
-                font-size: 24px;
-            }
-            
-            .terminal {
-                font-size: 14px;
-                padding: 20px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 15px;
-            }
-            
-            .stat-box {
-                padding: 15px;
-            }
-            
-            .stat-label {
-                font-size: 12px;
-            }
-            
-            .stat-value {
-                font-size: 18px;
-            }
-            
-            .ad-container {
-                min-height: 90px;
-            }
+        .hex-btn:active { background: var(--sys-blue); color: black; }
+
+        /* UTILS */
+        @keyframes blink { 50% { opacity: 0; } }
+        .glitch { animation: glitch 0.5s linear infinite; }
+        @keyframes glitch {
+            2% { transform: translate(2px,0) skew(0deg); }
+            4% { transform: translate(-2px,0) skew(0deg); }
+            62% { transform: translate(0,0) skew(5deg); } 
         }
-        
-        /* Landscape Mode */
-        @media (orientation: landscape) and (max-height: 500px) {
-            .container {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-            
-            .header {
-                width: 100%;
-            }
-            
-            .ad-container {
-                width: 100%;
-                order: 1;
-            }
-            
-            .terminal {
-                flex: 1;
-                min-height: 200px;
-                order: 2;
-            }
-            
-            .progress-container {
-                width: 100%;
-                order: 3;
-            }
-            
-            .stats-grid {
-                width: 100%;
-                order: 4;
-            }
-            
-            #installBtn {
-                bottom: 10px;
-                right: 10px;
-                padding: 10px 15px;
-                font-size: 12px;
-            }
+
+        /* MOBILE CONTROLS */
+        .mobile-controls {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            margin-bottom: 5px;
         }
-        
-        /* High DPI Screens */
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-            .scanlines {
-                background-size: 100% 3px;
-            }
+        .ctrl-btn {
+            background: #111;
+            border: 1px solid #444;
+            color: #888;
+            padding: 8px;
+            text-align: center;
+            font-size: 10px;
+            cursor: pointer;
         }
-        
-        /* Battery Saver Mode */
-        @media (prefers-reduced-motion: reduce) {
-            .status-dot,
-            .scanlines,
-            #installBtn,
-            .terminal-line {
-                animation: none;
-            }
-        }
-        
-        /* Dark Mode Support */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #000;
-            }
-        }
-        
-        /* iOS Safe Areas */
-        @supports (padding: max(0px)) {
-            .container {
-                padding-top: max(12px, env(safe-area-inset-top));
-                padding-bottom: max(12px, env(safe-area-inset-bottom));
-                padding-left: max(12px, env(safe-area-inset-left));
-                padding-right: max(12px, env(safe-area-inset-right));
-            }
-        }
+        .ctrl-btn:active { background: #333; color: #fff; }
+
     </style>
 </head>
 <body>
-    <canvas id="matrix"></canvas>
-    <div class="scanlines"></div>
-    
-    <div class="container">
-        <div class="header">
-            <div class="logo">🚀 CYBERPRANK v3.0</div>
-            <div class="status-indicator">
-                <div class="status-dot"></div>
-                <span>🔴 ACTIVE</span>
-            </div>
+
+    <canvas id="canvas-layer"></canvas>
+
+    <div id="ui-layer">
+        <div class="hud-header">
+            <div>⚡ KERNEL_V4.0</div>
+            <div id="connection-status" class="sys-status">ENCRYPTED</div>
+            <div id="ip-display">NO_DATA</div>
         </div>
-        
-        <!-- Costa Ads Container -->
-        <div class="ad-container" id="adContainer">
-            <!-- Ads will load here -->
+
+        <div id="terminal-window">
+            <div class="line sys">Initializing Advanced Cyber Interface...</div>
+            <div class="line info">Loading Modules: AUDIO, WEBGL, CRYPTO...</div>
+            <div class="line sys">System Ready.</div>
+            <div class="line info">Type 'help' for commands.</div>
         </div>
-        
-        <div class="terminal" id="terminal">
-            <div class="terminal-line prompt">> Initializing Mobile-First Security PWA v3.0...</div>
-            <div class="terminal-line info">> Device: <span id="deviceInfo">Detecting...</span></div>
-            <div class="terminal-line info">> Touch Support: <span id="touchInfo">Testing...</span></div>
-            <div class="terminal-line info">> PWA Mode: <span id="pwaMode">Checking...</span></div>
+
+        <div class="mobile-controls">
+            <div class="ctrl-btn" onclick="executeCmd('scan')">SCAN</div>
+            <div class="ctrl-btn" onclick="executeCmd('brute')">BRUTE</div>
+            <div class="ctrl-btn" onclick="executeCmd('decrypt')">DECRYPT</div>
+            <div class="ctrl-btn" onclick="executeCmd('clear')">CLS</div>
         </div>
-        
-        <div class="progress-container">
-            <div>Penetration Test Progress</div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <div id="progressText" style="text-align: right; margin-top: 6px; font-size: 12px; color: var(--hacker-cyan);">0%</div>
-        </div>
-        
-        <div class="stats-grid">
-            <div class="stat-box">
-                <div class="stat-label">🔥 SECURITY</div>
-                <div class="stat-value error" id="securityStat">TESTING</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">📱 MOBILE</div>
-                <div class="stat-value success" id="mobileStat">OPTIMIZED</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">⚡ SPEED</div>
-                <div class="stat-value info" id="speedStat">HIGH</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">🔧 PWA</div>
-                <div class="stat-value highlight" id="pwaStat">READY</div>
-            </div>
-        </div>
-        
-        <!-- Touch Menu for Mobile -->
-        <div class="touch-menu">
-            <div class="touch-btn" onclick="speedUpSimulation()">⚡</div>
-            <div class="touch-btn" onclick="showAlert()">⚠️</div>
-            <div class="touch-btn" onclick="toggleFullscreen()">📱</div>
+
+        <div class="input-line">
+            <span class="prompt-char">root@kali:~#</span>
+            <input type="text" id="cmd-input" autocomplete="off" placeholder="Enter command...">
         </div>
     </div>
-    
-    <!-- Alert Modal -->
-    <div class="alert-modal" id="alertModal">
-        <div class="alert-title">🚨 MOBILE SECURITY TRAINING</div>
-        <div style="color: white; line-height: 1.6; font-size: 14px;">
-            <p><strong>This is an educational simulation</strong> for cybersecurity training.</p>
-            <p>✅ Mobile-optimized PWA</p>
-            <p>✅ Touch-friendly interface</p>
-            <p>✅ Offline capability</p>
-            <p>✅ No real harm occurs</p>
-            <br>
-            <p style="color: var(--hacker-green); font-weight: bold;">
-                Install as PWA for full offline access!
-            </p>
-        </div>
-        <div style="margin-top: 20px;">
-            <button onclick="closeAlert()" style="
-                background: var(--hacker-red);
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                border-radius: 4px;
-                font-family: inherit;
-                cursor: pointer;
-                font-weight: bold;
-            ">UNDERSTOOD</button>
-        </div>
+
+    <div id="hex-overlay">
+        <h3 style="color:var(--sys-blue)">FIREWALL DECRYPTION</h3>
+        <p>Find the matching hex sequence: <span id="target-hex" style="color:#fff; font-weight:bold"></span></p>
+        <div class="hex-grid" id="hex-grid"></div>
+        <div id="timer-bar" style="height:4px; background:red; width:100%"></div>
     </div>
-    
-    <button id="installBtn">📱 INSTALL PWA</button>
-    
+
     <script>
-        // ========== MOBILE OPTIMIZATION ==========
+        // ==========================================
+        // 1. AUDIO SYNTHESIS ENGINE (No External Files)
+        // ==========================================
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         
-        // Fix viewport height for mobile browsers
-        function setVH() {
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        }
-        
-        setVH();
-        window.addEventListener('resize', setVH);
-        window.addEventListener('orientationchange', setVH);
-        
-        // Detect device and touch support
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        const isPWA = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-        
-        // Update device info
-        document.getElementById('deviceInfo').textContent = isMobile ? 'Mobile' : 'Desktop';
-        document.getElementById('touchInfo').textContent = isTouch ? 'Supported' : 'Not Supported';
-        document.getElementById('pwaMode').textContent = isPWA ? 'Standalone' : 'Browser';
-        
-        // ========== MATRIX EFFECT ==========
-        const canvas = document.getElementById('matrix');
+        const SoundFX = {
+            playTone: (freq, type, duration) => {
+                if(audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            },
+            type: () => SoundFX.playTone(800 + Math.random()*200, 'square', 0.05),
+            error: () => {
+                SoundFX.playTone(150, 'sawtooth', 0.3);
+                SoundFX.playTone(100, 'sawtooth', 0.3);
+            },
+            success: () => {
+                SoundFX.playTone(1200, 'sine', 0.1);
+                setTimeout(() => SoundFX.playTone(1800, 'sine', 0.2), 100);
+            },
+            access: () => SoundFX.playTone(200, 'square', 0.1)
+        };
+
+        // ==========================================
+        // 2. ADVANCED PARTICLE SYSTEM (Network Graph)
+        // ==========================================
+        const canvas = document.getElementById('canvas-layer');
         const ctx = canvas.getContext('2d');
+        let particles = [];
         
-        function initMatrix() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 1; // Velocity
+                this.vy = (Math.random() - 0.5) * 1;
+                this.size = Math.random() * 2 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.fillStyle = '#00ff00';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+                ctx.fill();
+            }
+        }
+
+        for(let i=0; i<60; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(0,0,0,0.1)'; // Trail effect
             
-            const chars = '01';
-            const fontSize = isMobile ? 12 : 14;
-            const columns = Math.floor(canvas.width / fontSize);
-            const drops = new Array(columns).fill(1);
-            
-            function draw() {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = '#0F0';
-                ctx.font = `${fontSize}px monospace`;
-                
-                for (let i = 0; i < drops.length; i++) {
-                    const char = chars[Math.floor(Math.random() * chars.length)];
-                    const x = i * fontSize;
-                    const y = drops[i] * fontSize;
-                    
-                    ctx.fillText(char, x, y);
-                    
-                    if (y > canvas.height && Math.random() > 0.975) {
-                        drops[i] = 0;
+            // Draw Connections
+            for(let i=0; i<particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                for(let j=i; j<particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if(dist < 100) {
+                        ctx.strokeStyle = `rgba(0, 255, 0, ${1 - dist/100})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
                     }
-                    drops[i]++;
                 }
             }
-            
-            setInterval(draw, 50);
+            requestAnimationFrame(animate);
         }
+        animate();
+
+        // ==========================================
+        // 3. CORE LOGIC & TERMINAL
+        // ==========================================
+        const terminal = document.getElementById('terminal-window');
+        const input = document.getElementById('cmd-input');
         
-        // ========== TERMINAL SIMULATION ==========
-        const terminal = document.getElementById('terminal');
-        let lineCount = 0;
-        
-        function addTerminalLine(text, type = 'prompt', delay = 0) {
-            setTimeout(() => {
-                const line = document.createElement('div');
-                line.className = `terminal-line ${type}`;
-                line.textContent = text;
-                terminal.appendChild(line);
-                terminal.scrollTop = terminal.scrollHeight;
+        const fileSystem = {
+            'passwords.txt': 'Encrypted: [AES-256]',
+            'config.sys': 'Root access required',
+            'target_ip.log': '192.168.1.105'
+        };
+
+        function print(text, type='sys') {
+            const div = document.createElement('div');
+            div.className = `line ${type}`;
+            div.textContent = `> ${text}`;
+            terminal.appendChild(div);
+            terminal.scrollTop = terminal.scrollHeight;
+            if(type !== 'user') SoundFX.access();
+        }
+
+        async function getRealInfo() {
+            print('Scanning local hardware...', 'info');
+            const gpu = document.createElement('canvas').getContext('webgl').getParameter(0x9246);
+            print(`GPU DETECTED: ${gpu || 'Unknown'}`, 'sys');
+            print(`CORES: ${navigator.hardwareConcurrency || 4}`, 'sys');
+            print(`PLATFORM: ${navigator.platform}`, 'sys');
+            
+            try {
+                const res = await fetch('https://api.ipify.org?format=json');
+                const data = await res.json();
+                document.getElementById('ip-display').textContent = data.ip;
+                print(`PUBLIC IP EXPOSED: ${data.ip}`, 'err');
+            } catch(e) {
+                print('Network masking active (Offline mode)', 'info');
+            }
+        }
+
+        // ==========================================
+        // 4. COMMAND PROCESSOR
+        // ==========================================
+        function executeCmd(cmd) {
+            cmd = cmd.trim().toLowerCase();
+            print(cmd, 'user');
+            input.value = '';
+
+            switch(cmd) {
+                case 'help':
+                    print('AVAILABLE COMMANDS:', 'info');
+                    print(' scan    - Network vulnerability scanner');
+                    print(' brute   - Start bruteforce attack');
+                    print(' decrypt - Play decryption minigame');
+                    print(' ip      - Show real device info');
+                    print(' ls      - List directory files');
+                    print(' clear   - Clear terminal');
+                    break;
                 
-                lineCount++;
-                if (lineCount > 50) {
-                    terminal.removeChild(terminal.firstChild);
-                    lineCount--;
-                }
-            }, delay);
+                case 'clear':
+                case 'cls':
+                    terminal.innerHTML = '';
+                    break;
+
+                case 'ip':
+                    getRealInfo();
+                    break;
+
+                case 'ls':
+                    Object.keys(fileSystem).forEach(f => print(f, 'info'));
+                    break;
+
+                case 'scan':
+                    print('Initiating port scan...', 'info');
+                    let port = 20;
+                    const scanTimer = setInterval(() => {
+                        port += Math.floor(Math.random() * 50);
+                        if(Math.random() > 0.8) print(`Port ${port} [OPEN] - VULNERABLE`, 'err');
+                        else print(`Port ${port} [CLOSED]`, 'sys');
+                        
+                        if(port > 1000) {
+                            clearInterval(scanTimer);
+                            print('Scan Complete. Target Acquired.', 'success');
+                            SoundFX.success();
+                        }
+                    }, 100);
+                    break;
+
+                case 'brute':
+                    print('Loading password list...', 'info');
+                    let attempts = 0;
+                    const bruteInt = setInterval(() => {
+                        attempts++;
+                        const pass = Math.random().toString(36).substring(7);
+                        print(`Trying: ${pass}... Failed`, 'sys');
+                        if(attempts > 20) {
+                            clearInterval(bruteInt);
+                            print('ROOT ACCESS GRANTED.', 'success');
+                            document.body.style.border = "2px solid green";
+                            SoundFX.success();
+                        }
+                    }, 50);
+                    break;
+
+                case 'decrypt':
+                    startHexGame();
+                    break;
+
+                default:
+                    print(`Command '${cmd}' not found.`, 'err');
+                    SoundFX.error();
+            }
         }
-        
-        const simulationSteps = [
-            {text: "> Scanning network for vulnerabilities...", type: "info", delay: 500},
-            {text: "> Detected 3 security weaknesses", type: "warning", delay: 1500},
-            {text: "> Exploiting vulnerability #1...", type: "prompt", delay: 2500},
-            {text: "> ✅ Firewall bypassed", type: "success", delay: 3500},
-            {text: "> Accessing system files...", type: "info", delay: 4500},
-            {text: "> Found 127 sensitive files", type: "warning", delay: 5500},
-            {text: "> Downloading encrypted data...", type: "prompt", delay: 6500},
-            {text: "> 🔥 SYSTEM COMPROMISED", type: "error", delay: 7500},
-            {text: "> 🎯 Training simulation complete", type: "success", delay: 8500},
-            {text: "> Install as PWA for offline practice", type: "highlight", delay: 9500}
-        ];
-        
-        let progress = 0;
-        let simulationInterval;
-        
-        function updateProgress(value) {
-            progress = Math.min(100, Math.max(0, value));
-            document.getElementById('progressFill').style.width = progress + '%';
-            document.getElementById('progressText').textContent = Math.round(progress) + '%';
-            
-            // Update stats based on progress
-            if (progress >= 25) document.getElementById('securityStat').textContent = 'WEAK';
-            if (progress >= 50) document.getElementById('securityStat').textContent = 'BREACHED';
-            if (progress >= 75) document.getElementById('securityStat').textContent = 'COMPROMISED';
-            if (progress >= 100) document.getElementById('securityStat').textContent = 'OWNED';
-        }
-        
-        function startSimulation() {
-            let step = 0;
-            simulationInterval = setInterval(() => {
-                if (step < simulationSteps.length) {
-                    const sim = simulationSteps[step];
-                    addTerminalLine(sim.text, sim.type);
-                    updateProgress(progress + (100 / simulationSteps.length));
-                    step++;
-                } else {
-                    clearInterval(simulationInterval);
-                    document.getElementById('alertModal').style.display = 'block';
-                }
-            }, 1000);
-        }
-        
-        // ========== PWA INSTALLATION ==========
-        let deferredPrompt;
-        
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            
-            setTimeout(() => {
-                if (deferredPrompt && !isPWA) {
-                    document.getElementById('installBtn').style.display = 'block';
-                    addTerminalLine("> 📱 PWA Installation Available", "info", 1000);
-                    document.getElementById('pwaStat').textContent = "INSTALL";
-                }
-            }, 5000);
+
+        // Input handling
+        input.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter') executeCmd(input.value);
+            else SoundFX.type();
         });
-        
-        document.getElementById('installBtn').addEventListener('click', async () => {
-            if (!deferredPrompt) return;
+
+        // ==========================================
+        // 5. HEX DECRYPTION MINIGAME
+        // ==========================================
+        function startHexGame() {
+            const modal = document.getElementById('hex-overlay');
+            const grid = document.getElementById('hex-grid');
+            const targetDisplay = document.getElementById('target-hex');
             
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
+            modal.style.display = 'block';
+            grid.innerHTML = '';
             
-            if (outcome === 'accepted') {
-                addTerminalLine("> ✅ PWA Installed Successfully", "success");
-                document.getElementById('pwaStat').textContent = "INSTALLED";
-                document.getElementById('installBtn').style.display = 'none';
-                document.getElementById('pwaMode').textContent = "Standalone";
+            const target = Math.floor(Math.random()*255).toString(16).toUpperCase().padStart(2,'0');
+            targetDisplay.innerText = target;
+            
+            let hexes = [];
+            for(let i=0; i<15; i++) {
+                hexes.push(Math.floor(Math.random()*255).toString(16).toUpperCase().padStart(2,'0'));
             }
-            
-            deferredPrompt = null;
-        });
-        
-        // ========== SERVICE WORKER ==========
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(() => {
-                        addTerminalLine("> 🔧 Offline Mode: Active", "success", 200);
-                        document.getElementById('pwaStat').textContent = "OFFLINE";
-                    })
-                    .catch(() => {
-                        addTerminalLine("> ⚠️ Offline Mode: Limited", "warning", 200);
-                    });
-            });
-        }
-        
-        // ========== TOUCH FUNCTIONS ==========
-        function speedUpSimulation() {
-            if (simulationInterval) {
-                clearInterval(simulationInterval);
-                updateProgress(100);
-                simulationSteps.forEach((sim, index) => {
-                    addTerminalLine(sim.text, sim.type, index * 100);
-                });
-                document.getElementById('alertModal').style.display = 'block';
-            }
-        }
-        
-        function showAlert() {
-            document.getElementById('alertModal').style.display = 'block';
-        }
-        
-        function closeAlert() {
-            document.getElementById('alertModal').style.display = 'none';
-        }
-        
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().catch(err => {
-                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
-                });
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
-            }
-        }
-        
-        // ========== ADS MANAGEMENT ==========
-        function loadAd() {
-            const adContainer = document.getElementById('adContainer');
-            const isLandscape = window.innerWidth > window.innerHeight;
-            
-            if (isMobile && !isLandscape) {
-                // Mobile portrait
-                atOptions.width = 300;
-                atOptions.height = 250;
-            } else if (isMobile && isLandscape) {
-                // Mobile landscape
-                atOptions.width = 728;
-                atOptions.height = 90;
-            } else {
-                // Desktop
-                atOptions.width = 728;
-                atOptions.height = 90;
-            }
-            
-            // Reload ad with new settings
-            adContainer.innerHTML = `
-                <script type="text/javascript">
-                    atOptions = ${JSON.stringify(atOptions)};
-                <\/script>
-                <script src="https://lozengehelped.com/9a69dc275b7941b8cd82ea95d7ce2b30/invoke.js"><\/script>
-            `;
-            
-            // Execute the script
-            eval(atOptions.toString());
-        }
-        
-        // ========== PERFORMANCE OPTIMIZATIONS ==========
-        
-        // Debounce resize events
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                setVH();
-                loadAd();
-            }, 250);
-        });
-        
-        // Prevent zoom on mobile
-        document.addEventListener('touchstart', (e) => {
-            if (e.touches.length > 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-        
-        // Prevent pull-to-refresh
-        document.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-        
-        // ========== INITIALIZATION ==========
-        window.addEventListener('load', () => {
-            // Set initial values
-            document.getElementById('mobileStat').textContent = isMobile ? 'OPTIMIZED' : 'READY';
-            document.getElementById('speedStat').textContent = 'HIGH';
-            
-            // Start effects
-            initMatrix();
-            
-            // Load appropriate ad
-            loadAd();
-            
-            // Start simulation after a brief delay
-            setTimeout(() => {
-                startSimulation();
-            }, 1000);
-            
-            // Add welcome message
-            addTerminalLine("> Welcome to CyberPrank Security Training", "highlight");
-            addTerminalLine("> Touch buttons on right for quick actions", "info");
-            
-            // Performance monitoring
-            if ('connection' in navigator) {
-                const speed = navigator.connection.effectiveType;
-                addTerminalLine(`> Network: ${speed.toUpperCase()}`, "info");
-                document.getElementById('speedStat').textContent = speed.toUpperCase();
-            }
-        });
-        
-        // Handle page visibility
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                addTerminalLine("> Session paused", "warning");
-            } else {
-                addTerminalLine("> Session resumed", "success");
-            }
-        });
-        
-        // Handle offline/online status
-        window.addEventListener('offline', () => {
-            addTerminalLine("> ⚠️ You are now offline", "warning");
-            document.getElementById('pwaStat').textContent = "OFFLINE";
-        });
-        
-        window.addEventListener('online', () => {
-            addTerminalLine("> ✅ Connection restored", "success");
-            document.getElementById('pwaStat').textContent = "ONLINE";
-        });
-        
-        // Battery status (if supported)
-        if ('getBattery' in navigator) {
-            navigator.getBattery().then(battery => {
-                const updateBattery = () => {
-                    const level = Math.round(battery.level * 100);
-                    if (level < 20) {
-                        addTerminalLine(`> 🔋 Low battery: ${level}%`, "warning");
+            hexes.push(target); // Add correct answer
+            hexes.sort(() => Math.random() - 0.5); // Shuffle
+
+            hexes.forEach(h => {
+                const btn = document.createElement('div');
+                btn.className = 'hex-btn';
+                btn.innerText = h;
+                btn.onclick = () => {
+                    if(h === target) {
+                        print('Decryption Successful!', 'success');
+                        SoundFX.success();
+                        modal.style.display = 'none';
+                    } else {
+                        print('Decryption Failed. IPS Alerted.', 'err');
+                        SoundFX.error();
+                        btn.style.borderColor = 'red';
+                        btn.style.color = 'red';
                     }
                 };
-                
-                battery.addEventListener('levelchange', updateBattery);
-                updateBattery();
+                grid.appendChild(btn);
             });
         }
+
+        // Initialization
+        window.onload = () => {
+            setTimeout(() => {
+                input.focus();
+                SoundFX.access();
+            }, 1000);
+            
+            // Background Hum initialization on first click
+            document.body.addEventListener('click', () => {
+                if(audioCtx.state === 'suspended') audioCtx.resume();
+            }, {once:true});
+        };
+
     </script>
 </body>
 </html>
