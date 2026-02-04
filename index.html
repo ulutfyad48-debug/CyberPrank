@@ -2,452 +2,344 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>💀 CYBERPRANK v4.0 | KERNEL ACCESS</title>
-    <meta name="theme-color" content="#000000">
-    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIkN5YmVyUHJhbmsgdjQuMCIsCiAgInNob3J0X25hbWUiOiJDeWJlckNvcmUiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzAwMDAwMCIsCiAgInRoZW1lX2NvbG9yIjogIiMwMGZmMDAiCn0=">
-    
+    <title>⚡ PROJECT GOD MODE | GLOBAL SURVEILLANCE</title>
     <style>
+        /* --- CORE STYLING --- */
         :root {
-            --neon-green: #0f0;
-            --alert-red: #f00;
-            --sys-blue: #0af;
-            --bg-black: #050505;
-            --glass: rgba(0, 20, 0, 0.7);
+            --primary: #0f0;
+            --alert: #f00;
+            --secondary: #00ffff;
+            --bg: #050505;
+            --panel-bg: rgba(0, 10, 0, 0.85);
+            --border: 1px solid rgba(0, 255, 0, 0.3);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Courier New', monospace; }
-        
         body {
-            background-color: var(--bg-black);
-            color: var(--neon-green);
+            margin: 0;
+            background: var(--bg);
+            color: var(--primary);
+            font-family: 'Consolas', 'Monaco', monospace;
             overflow: hidden;
+            display: flex;
             height: 100vh;
-            display: flex;
-            flex-direction: column;
+            text-transform: uppercase;
         }
 
-        /* LAYERS */
-        #canvas-layer { position: fixed; top: 0; left: 0; z-index: 0; opacity: 0.4; }
-        #ui-layer { position: relative; z-index: 10; height: 100%; display: flex; flex-direction: column; padding: 10px; }
-
-        /* HEADER */
-        .hud-header {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 2px solid var(--neon-green);
-            padding-bottom: 5px;
-            background: linear-gradient(90deg, rgba(0,255,0,0.1), transparent);
+        /* --- CRT EFFECT (Screen Flicker) --- */
+        body::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 1000;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
         }
-        
-        .sys-status { font-size: 12px; color: var(--alert-red); animation: blink 1s infinite; }
 
-        /* MAIN TERMINAL */
-        #terminal-window {
-            flex: 1;
-            background: rgba(0,0,0,0.85);
-            border: 1px solid #333;
-            margin: 10px 0;
+        /* --- LAYOUT GRID --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 20% 50% 30%;
+            grid-template-rows: 60% 40%;
+            width: 100%;
+            height: 100%;
+            padding: 5px;
+            gap: 5px;
+            box-sizing: border-box;
+        }
+
+        .panel {
+            background: var(--panel-bg);
+            border: var(--border);
+            position: relative;
             padding: 10px;
-            overflow-y: auto;
-            box-shadow: 0 0 20px rgba(0,255,0,0.1);
-            font-size: 14px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
         }
 
-        .line { margin-bottom: 4px; word-break: break-all; }
-        .line.user { color: var(--sys-blue); }
-        .line.sys { color: var(--neon-green); }
-        .line.err { color: var(--alert-red); text-shadow: 0 0 5px red; }
-        .line.info { color: #ff0; }
+        h3 {
+            margin: 0 0 10px 0;
+            background: rgba(0, 255, 0, 0.1);
+            padding: 2px 5px;
+            font-size: 12px;
+            border-left: 3px solid var(--primary);
+        }
 
-        /* INPUT AREA */
-        .input-line {
+        /* --- MODULES --- */
+        
+        /* 1. SIDEBAR STATS */
+        .stat-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 12px; }
+        .bar-container { width: 60%; background: #111; height: 10px; }
+        .bar-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.2s; }
+
+        /* 2. MAIN TERMINAL (Code Rain) */
+        #code-display {
+            font-size: 14px;
+            color: #0f0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            opacity: 0.8;
+            height: 90%;
+            overflow-y: scroll;
+        }
+        #code-display::-webkit-scrollbar { width: 0; }
+
+        /* 3. MAP CANVAS */
+        #map-canvas {
+            width: 100%;
+            height: 100%;
+            opacity: 0.6;
+        }
+
+        /* 4. WEBCAM FEED (The Scary Part) */
+        .camera-feed {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #000;
             display: flex;
             align-items: center;
-            background: #000;
-            border: 1px solid var(--neon-green);
-            padding: 10px;
+            justify-content: center;
         }
-        
-        .prompt-char { color: var(--neon-green); margin-right: 10px; font-weight: bold; }
-        
-        #cmd-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: white;
-            font-family: inherit;
-            font-size: 16px;
-            outline: none;
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.2) brightness(0.8);
         }
-
-        /* MINIGAME OVERLAY */
-        #hex-overlay {
-            position: fixed;
+        .cam-overlay {
+            position: absolute;
+            top: 10px; left: 10px;
+            border: 1px solid var(--alert);
+            color: var(--alert);
+            padding: 2px 5px;
+            font-size: 10px;
+            animation: blink 1s infinite;
+        }
+        .face-box {
+            position: absolute;
+            border: 2px dashed var(--alert);
+            width: 100px; height: 100px;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.95);
-            border: 2px solid var(--sys-blue);
-            padding: 20px;
-            display: none;
-            z-index: 100;
-            text-align: center;
-            box-shadow: 0 0 50px rgba(0,100,255,0.3);
-            width: 90%;
-            max-width: 400px;
+            box-shadow: 0 0 20px rgba(255,0,0,0.5);
         }
 
-        .hex-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .hex-btn {
-            background: rgba(0, 50, 100, 0.3);
-            border: 1px solid var(--sys-blue);
-            color: var(--sys-blue);
-            padding: 10px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .hex-btn:active { background: var(--sys-blue); color: black; }
-
-        /* UTILS */
-        @keyframes blink { 50% { opacity: 0; } }
-        .glitch { animation: glitch 0.5s linear infinite; }
-        @keyframes glitch {
-            2% { transform: translate(2px,0) skew(0deg); }
-            4% { transform: translate(-2px,0) skew(0deg); }
-            62% { transform: translate(0,0) skew(5deg); } 
-        }
-
-        /* MOBILE CONTROLS */
-        .mobile-controls {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-            margin-bottom: 5px;
-        }
-        .ctrl-btn {
-            background: #111;
-            border: 1px solid #444;
-            color: #888;
-            padding: 8px;
-            text-align: center;
+        /* 5. LOG SCROLLER */
+        #log-scroller {
             font-size: 10px;
-            cursor: pointer;
+            color: var(--secondary);
+            line-height: 1.4;
         }
-        .ctrl-btn:active { background: #333; color: #fff; }
 
+        /* ANIMATIONS */
+        @keyframes blink { 50% { opacity: 0; } }
+        
+        .critical { color: var(--alert); font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <canvas id="canvas-layer"></canvas>
-
-    <div id="ui-layer">
-        <div class="hud-header">
-            <div>⚡ KERNEL_V4.0</div>
-            <div id="connection-status" class="sys-status">ENCRYPTED</div>
-            <div id="ip-display">NO_DATA</div>
+    <div class="grid-container">
+        
+        <div class="panel">
+            <h3>SYSTEM RESOURCES</h3>
+            <div id="stats-container"></div>
+            <br>
+            <h3>ACTIVE THREADS</h3>
+            <div class="stat-row"><span>BRUTEFORCE</span><span style="color:var(--alert)">RUNNING</span></div>
+            <div class="stat-row"><span>SQL INJECT</span><span style="color:var(--secondary)">WAITING</span></div>
+            <div class="stat-row"><span>DDOS ATTACK</span><span style="color:var(--primary)">SUCCESS</span></div>
         </div>
 
-        <div id="terminal-window">
-            <div class="line sys">Initializing Advanced Cyber Interface...</div>
-            <div class="line info">Loading Modules: AUDIO, WEBGL, CRYPTO...</div>
-            <div class="line sys">System Ready.</div>
-            <div class="line info">Type 'help' for commands.</div>
+        <div class="panel" style="padding:0;">
+            <div style="position:absolute; top:10px; left:10px; z-index:10;">
+                <h3>GLOBAL TRACKING</h3>
+            </div>
+            <canvas id="map-canvas"></canvas>
         </div>
 
-        <div class="mobile-controls">
-            <div class="ctrl-btn" onclick="executeCmd('scan')">SCAN</div>
-            <div class="ctrl-btn" onclick="executeCmd('brute')">BRUTE</div>
-            <div class="ctrl-btn" onclick="executeCmd('decrypt')">DECRYPT</div>
-            <div class="ctrl-btn" onclick="executeCmd('clear')">CLS</div>
+        <div class="panel" style="padding:0">
+            <div class="camera-feed">
+                <video id="webcam" autoplay playsinline muted></video>
+                <div class="cam-overlay">REC ● LIVE FEED</div>
+                <div class="face-box"></div>
+                <div style="position:absolute; bottom:10px; width:100%; text-align:center; color:var(--alert); font-size:12px;">
+                    MATCHING BIOMETRICS...
+                </div>
+            </div>
         </div>
 
-        <div class="input-line">
-            <span class="prompt-char">root@kali:~#</span>
-            <input type="text" id="cmd-input" autocomplete="off" placeholder="Enter command...">
+        <div class="panel" style="grid-column: span 2;">
+            <h3>ROOT TERMINAL [KEYBOARD INTERCEPT ACTIVE]</h3>
+            <div id="code-display">Type any key to inject code..._</div>
         </div>
-    </div>
 
-    <div id="hex-overlay">
-        <h3 style="color:var(--sys-blue)">FIREWALL DECRYPTION</h3>
-        <p>Find the matching hex sequence: <span id="target-hex" style="color:#fff; font-weight:bold"></span></p>
-        <div class="hex-grid" id="hex-grid"></div>
-        <div id="timer-bar" style="height:4px; background:red; width:100%"></div>
+        <div class="panel">
+            <h3>PACKET SNIFFER</h3>
+            <div id="log-scroller"></div>
+        </div>
     </div>
 
     <script>
-        // ==========================================
-        // 1. AUDIO SYNTHESIS ENGINE (No External Files)
-        // ==========================================
+        // --- 1. HACKER TYPER ENGINE (Typing Logic) ---
+        const codeDisplay = document.getElementById('code-display');
+        const sourceCode = `struct group_info init_groups = { .usage = ATOMIC_INIT(2) };
+        export_kernel_struct(init_groups); 
+        void __init secure_boot_init(void) {
+            unsigned long pointer = 0x8922A;
+            inject_payload(pointer, SHELLCODE_X86);
+            // Bypassing Firewall Layer 7...
+            if (firewall_status == ACTIVE) {
+                disable_service("iptables");
+                override_admin_privileges(ROOT);
+            }
+            connect_remote_host("192.168.0.1", PORT_443);
+            download_database("users.db");
+            decrypt_hashes(SHA256, DICTIONARY_ATTACK);
+            return SYSTEM_COMPROMISED;
+        }
+        // Accessing Mainframe...
+        // Uploading Trojan.Win32.Generic...
+        // Establishing Handshake... SYN... ACK... SYN-ACK...
+        `;
+        
+        let charIndex = 0;
+        
+        // JAB BHI USER KEYBOARD DABAYEGA, CODE LIKHA AAYEGA
+        document.addEventListener('keydown', (e) => {
+            e.preventDefault(); // Default typing roko
+            
+            // Add sound
+            playKeySound();
+
+            // Add text
+            const charsToAdd = Math.floor(Math.random() * 5) + 2;
+            const textChunk = sourceCode.substring(charIndex, charIndex + charsToAdd);
+            
+            const span = document.createElement('span');
+            span.textContent = textChunk;
+            codeDisplay.appendChild(span);
+            codeDisplay.scrollTop = codeDisplay.scrollHeight;
+            
+            charIndex += charsToAdd;
+            if (charIndex >= sourceCode.length) charIndex = 0; // Loop code
+        });
+
+        // --- 2. AUDIO FX ---
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         
-        const SoundFX = {
-            playTone: (freq, type, duration) => {
-                if(audioCtx.state === 'suspended') audioCtx.resume();
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = type;
-                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
-            },
-            type: () => SoundFX.playTone(800 + Math.random()*200, 'square', 0.05),
-            error: () => {
-                SoundFX.playTone(150, 'sawtooth', 0.3);
-                SoundFX.playTone(100, 'sawtooth', 0.3);
-            },
-            success: () => {
-                SoundFX.playTone(1200, 'sine', 0.1);
-                setTimeout(() => SoundFX.playTone(1800, 'sine', 0.2), 100);
-            },
-            access: () => SoundFX.playTone(200, 'square', 0.1)
-        };
+        function playKeySound() {
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle'; // Mechanical keyboard soundish
+            osc.frequency.setValueAtTime(400 + Math.random()*200, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.05);
+        }
 
-        // ==========================================
-        // 2. ADVANCED PARTICLE SYSTEM (Network Graph)
-        // ==========================================
-        const canvas = document.getElementById('canvas-layer');
+        // --- 3. GLOBAL MAP VISUALIZATION ---
+        const canvas = document.getElementById('map-canvas');
         const ctx = canvas.getContext('2d');
-        let particles = [];
-        
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        let width, height;
+
+        function resize() {
+            width = canvas.width = canvas.parentElement.offsetWidth;
+            height = canvas.height = canvas.parentElement.offsetHeight;
+        }
         window.addEventListener('resize', resize);
         resize();
 
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 1; // Velocity
-                this.vy = (Math.random() - 0.5) * 1;
-                this.size = Math.random() * 2 + 1;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-            draw() {
-                ctx.fillStyle = '#00ff00';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
-                ctx.fill();
-            }
-        }
+        // Draw random connection lines (Pings)
+        function drawMap() {
+            ctx.fillStyle = 'rgba(0, 10, 0, 0.3)';
+            ctx.fillRect(0, 0, width, height);
 
-        for(let i=0; i<60; i++) particles.push(new Particle());
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(0,0,0,0.1)'; // Trail effect
-            
-            // Draw Connections
-            for(let i=0; i<particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-                for(let j=i; j<particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx*dx + dy*dy);
-                    if(dist < 100) {
-                        ctx.strokeStyle = `rgba(0, 255, 0, ${1 - dist/100})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        // ==========================================
-        // 3. CORE LOGIC & TERMINAL
-        // ==========================================
-        const terminal = document.getElementById('terminal-window');
-        const input = document.getElementById('cmd-input');
-        
-        const fileSystem = {
-            'passwords.txt': 'Encrypted: [AES-256]',
-            'config.sys': 'Root access required',
-            'target_ip.log': '192.168.1.105'
-        };
-
-        function print(text, type='sys') {
-            const div = document.createElement('div');
-            div.className = `line ${type}`;
-            div.textContent = `> ${text}`;
-            terminal.appendChild(div);
-            terminal.scrollTop = terminal.scrollHeight;
-            if(type !== 'user') SoundFX.access();
-        }
-
-        async function getRealInfo() {
-            print('Scanning local hardware...', 'info');
-            const gpu = document.createElement('canvas').getContext('webgl').getParameter(0x9246);
-            print(`GPU DETECTED: ${gpu || 'Unknown'}`, 'sys');
-            print(`CORES: ${navigator.hardwareConcurrency || 4}`, 'sys');
-            print(`PLATFORM: ${navigator.platform}`, 'sys');
-            
-            try {
-                const res = await fetch('https://api.ipify.org?format=json');
-                const data = await res.json();
-                document.getElementById('ip-display').textContent = data.ip;
-                print(`PUBLIC IP EXPOSED: ${data.ip}`, 'err');
-            } catch(e) {
-                print('Network masking active (Offline mode)', 'info');
-            }
-        }
-
-        // ==========================================
-        // 4. COMMAND PROCESSOR
-        // ==========================================
-        function executeCmd(cmd) {
-            cmd = cmd.trim().toLowerCase();
-            print(cmd, 'user');
-            input.value = '';
-
-            switch(cmd) {
-                case 'help':
-                    print('AVAILABLE COMMANDS:', 'info');
-                    print(' scan    - Network vulnerability scanner');
-                    print(' brute   - Start bruteforce attack');
-                    print(' decrypt - Play decryption minigame');
-                    print(' ip      - Show real device info');
-                    print(' ls      - List directory files');
-                    print(' clear   - Clear terminal');
-                    break;
+            // Random "Target" dots
+            for(let i=0; i<3; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * height;
                 
-                case 'clear':
-                case 'cls':
-                    terminal.innerHTML = '';
-                    break;
+                // Draw ping circle
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(0, 255, 0, ${Math.random()})`;
+                ctx.arc(x, y, Math.random() * 20, 0, Math.PI * 2);
+                ctx.stroke();
 
-                case 'ip':
-                    getRealInfo();
-                    break;
+                // Draw connecting line
+                ctx.beginPath();
+                ctx.moveTo(width/2, height/2); // Center hub
+                ctx.lineTo(x, y);
+                ctx.strokeStyle = 'rgba(0, 255, 255, 0.2)';
+                ctx.stroke();
+            }
+            
+            // Draw Grid
+            ctx.strokeStyle = 'rgba(0, 50, 0, 0.5)';
+            ctx.beginPath();
+            for(let x=0; x<width; x+=40) { ctx.moveTo(x,0); ctx.lineTo(x,height); }
+            for(let y=0; y<height; y+=40) { ctx.moveTo(0,y); ctx.lineTo(width,y); }
+            ctx.stroke();
 
-                case 'ls':
-                    Object.keys(fileSystem).forEach(f => print(f, 'info'));
-                    break;
+            requestAnimationFrame(drawMap);
+        }
+        drawMap();
 
-                case 'scan':
-                    print('Initiating port scan...', 'info');
-                    let port = 20;
-                    const scanTimer = setInterval(() => {
-                        port += Math.floor(Math.random() * 50);
-                        if(Math.random() > 0.8) print(`Port ${port} [OPEN] - VULNERABLE`, 'err');
-                        else print(`Port ${port} [CLOSED]`, 'sys');
-                        
-                        if(port > 1000) {
-                            clearInterval(scanTimer);
-                            print('Scan Complete. Target Acquired.', 'success');
-                            SoundFX.success();
-                        }
-                    }, 100);
-                    break;
-
-                case 'brute':
-                    print('Loading password list...', 'info');
-                    let attempts = 0;
-                    const bruteInt = setInterval(() => {
-                        attempts++;
-                        const pass = Math.random().toString(36).substring(7);
-                        print(`Trying: ${pass}... Failed`, 'sys');
-                        if(attempts > 20) {
-                            clearInterval(bruteInt);
-                            print('ROOT ACCESS GRANTED.', 'success');
-                            document.body.style.border = "2px solid green";
-                            SoundFX.success();
-                        }
-                    }, 50);
-                    break;
-
-                case 'decrypt':
-                    startHexGame();
-                    break;
-
-                default:
-                    print(`Command '${cmd}' not found.`, 'err');
-                    SoundFX.error();
+        // --- 4. WEBCAM ACCESS ---
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                document.getElementById('webcam').srcObject = stream;
+            } catch (err) {
+                console.log("Camera access denied or missing");
+                // Fallback text if no camera
+                document.querySelector('.camera-feed').innerHTML = "<h2 style='color:red'>CAMERA: OFF_LINE</h2>";
             }
         }
+        startCamera();
 
-        // Input handling
-        input.addEventListener('keydown', (e) => {
-            if(e.key === 'Enter') executeCmd(input.value);
-            else SoundFX.type();
+        // --- 5. AUTOMATED STATS & LOGS ---
+        const statsContainer = document.getElementById('stats-container');
+        const logScroller = document.getElementById('log-scroller');
+        const labels = ["CPU_0", "CPU_1", "RAM", "NET_UP", "NET_DOWN", "TEMP"];
+
+        // Init Stats Bars
+        labels.forEach(label => {
+            statsContainer.innerHTML += `
+                <div class="stat-row">
+                    <span>${label}</span>
+                    <div class="bar-container"><div class="bar-fill" id="bar-${label}"></div></div>
+                </div>`;
         });
 
-        // ==========================================
-        // 5. HEX DECRYPTION MINIGAME
-        // ==========================================
-        function startHexGame() {
-            const modal = document.getElementById('hex-overlay');
-            const grid = document.getElementById('hex-grid');
-            const targetDisplay = document.getElementById('target-hex');
-            
-            modal.style.display = 'block';
-            grid.innerHTML = '';
-            
-            const target = Math.floor(Math.random()*255).toString(16).toUpperCase().padStart(2,'0');
-            targetDisplay.innerText = target;
-            
-            let hexes = [];
-            for(let i=0; i<15; i++) {
-                hexes.push(Math.floor(Math.random()*255).toString(16).toUpperCase().padStart(2,'0'));
-            }
-            hexes.push(target); // Add correct answer
-            hexes.sort(() => Math.random() - 0.5); // Shuffle
-
-            hexes.forEach(h => {
-                const btn = document.createElement('div');
-                btn.className = 'hex-btn';
-                btn.innerText = h;
-                btn.onclick = () => {
-                    if(h === target) {
-                        print('Decryption Successful!', 'success');
-                        SoundFX.success();
-                        modal.style.display = 'none';
-                    } else {
-                        print('Decryption Failed. IPS Alerted.', 'err');
-                        SoundFX.error();
-                        btn.style.borderColor = 'red';
-                        btn.style.color = 'red';
-                    }
-                };
-                grid.appendChild(btn);
+        // Update loop
+        setInterval(() => {
+            // Update CPU/RAM Bars
+            labels.forEach(label => {
+                const val = Math.random() * 100;
+                const el = document.getElementById(`bar-${label}`);
+                el.style.width = `${val}%`;
+                el.style.background = val > 90 ? 'red' : '#0f0';
             });
-        }
 
-        // Initialization
-        window.onload = () => {
-            setTimeout(() => {
-                input.focus();
-                SoundFX.access();
-            }, 1000);
+            // Add Packet Logs
+            const ips = Math.floor(Math.random()*255);
+            const protocols = ["SSH", "TCP", "UDP", "HTTPS", "FTP"];
+            const proto = protocols[Math.floor(Math.random()*protocols.length)];
+            const status = Math.random() > 0.9 ? "<span class='critical'>REJECTED</span>" : "ACCEPTED";
             
-            // Background Hum initialization on first click
-            document.body.addEventListener('click', () => {
-                if(audioCtx.state === 'suspended') audioCtx.resume();
-            }, {once:true});
-        };
+            const logLine = document.createElement('div');
+            logLine.innerHTML = `[${new Date().toLocaleTimeString()}] SRC:192.168.0.${ips} > DST:10.0.8.2 : ${proto} : ${status}`;
+            logScroller.prepend(logLine);
+            if(logScroller.children.length > 20) logScroller.lastChild.remove();
+
+        }, 200);
 
     </script>
 </body>
